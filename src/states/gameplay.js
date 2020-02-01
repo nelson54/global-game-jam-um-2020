@@ -1,6 +1,7 @@
 const Phaser = require('phaser-ce');
 const Player = require('../sprites/player');
 const Input = require('../input');
+const Buildings = require('../buildings/buildings');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -9,7 +10,10 @@ class Gameplay extends Phaser.State {
     this.game.load.image('sparkle-2', '/assets/sprites/sparkle2.png');
     this.game.load.image('sparkle-3', '/assets/sprites/sparkle3.png');
 
-
+    this.game.load.image('frans-house', '/assets/buildings/house.png');
+    this.game.load.image('workshop', '/assets/buildings/workshop.png');
+    this.game.load.image('hardware', '/assets/buildings/hardware.png');
+    this.game.load.image('doghouse', '/assets/buildings/doghouse.png');
 
     this.game.load.spritesheet('player-1', '/assets/sprites/player-1.png', 50, 99);
     this.game.load.spritesheet('player-2', '/assets/sprites/player-2.png', 50, 99);
@@ -20,7 +24,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('water-balloon', 'assets/sprites/water-balloon.png');
 
 
-    this.game.load.image('carpet', 'assets/sprites/carpet.png');
+    this.game.load.image('map', 'assets/map.png');
     this.game.load.image('bed1', 'assets/sprites/bed1.png');
     this.game.load.image('bed2', 'assets/sprites/bed2.png');
     this.game.load.image('desk', 'assets/sprites/desk.png');
@@ -71,7 +75,7 @@ class Gameplay extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.game.add.tileSprite(0, 0, 1920, 1920, 'carpet');
+    this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
 
     let bed1 = this.game.add.sprite(280, 160, "bed1");
     bed1.scale.set(0.6);
@@ -117,11 +121,15 @@ class Gameplay extends Phaser.State {
     let input1 = new Input.XBoxController(this.input.gamepad.pad1);
     let input2 = new Input.XBoxController(this.input.gamepad.pad2);
 
+    Buildings.addBuildings(this.game);
+
     this.player1 = new Player(this.game, 100, 110, 16, 12, '#4b46ff', 'player-1');
     this.player1.controller = input1;
 
     this.player2 = new Player(this.game, 1130, 640, 1280 - 80, 12, '#ff4c47', 'player-2');
     this.player2.controller = input2;
+
+
 
     this.player1.enemy = this.player2;
     this.player2.enemy = this.player1;
