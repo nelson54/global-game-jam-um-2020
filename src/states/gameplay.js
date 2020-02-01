@@ -7,7 +7,6 @@ const Hud = require('../hud/hud');
 
 class Gameplay extends Phaser.State {
   preload() {
-    this.game.load.image('truck', '/assets/sprites/truck.png');
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
     this.game.load.image('sparkle-1', '/assets/sprites/sparkle1.png');
