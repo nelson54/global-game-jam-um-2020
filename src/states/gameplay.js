@@ -3,7 +3,7 @@ const Player = require('../sprites/player');
 const Input = require('../input');
 const Buildings = require('../buildings/buildings');
 const Hud = require('../hud/hud');
-
+const GameSate = require("../game-state");
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -169,6 +169,8 @@ class Gameplay extends Phaser.State {
         this.game.scale.startFullScreen(false);
       }
     });
+
+    this.gameState = GameSate.load();
 
     this.game.hud = new Hud(this.game);
   }

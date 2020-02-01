@@ -100,6 +100,32 @@ const initialState = {
     player: {
       healthMax: 150
     },
+    drugs: {
+      skeeze: {
+        name: "skeeze",
+        display_name: "Skeeze",
+        price: 0,
+        duration: 0
+      },
+      chlorine_triflouride: {
+        name: "chlorine_triflouride",
+        display_name: "Chlorine Triflouride",
+        price: 0,
+        duration: 0
+      },
+      research: {
+        name: "research",
+        display_name: "F73-k12-b",
+        price: 0,
+        duration: 0
+      },
+      canadian_frog: {
+        name: "canadian_frog",
+        display_name: "Canadian Frog",
+        price: 0,
+        duration: 0
+      }
+    },
     hammers: {
       rock: {
         name: "rock",
