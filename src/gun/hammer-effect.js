@@ -4,7 +4,7 @@ class HammerEffect extends Phaser.Particles.Arcade.Emitter {
 
   constructor(game, x, y) {
     super(game, x, y);
-    this.makeParticles(['hammer-1', 'hammer-1', 'hammer-1', 'hammer-1', 'hammer-1', 'sparkle1', 'sparkle-2', 'sparkle-3'], 0);
+    this.makeParticles(['hammer-1', 'hammer-1', 'hammer-1', 'hammer-1', 'hammer-1', 'sparkle-1', 'sparkle-2', 'sparkle-3'], 0);
     game.add.existing(this);
 
     this.setXSpeed(-100, 100);
