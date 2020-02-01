@@ -71,7 +71,7 @@ class Gameplay extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.game.add.tileSprite(0, 0, 1280, 720, 'carpet');
+    this.game.add.tileSprite(0, 0, 1920, 1920, 'carpet');
 
     let bed1 = this.game.add.sprite(280, 160, "bed1");
     bed1.scale.set(0.6);
@@ -128,6 +128,8 @@ class Gameplay extends Phaser.State {
 
     this.players = this.game.add.physicsGroup();
     this.players.addMultiple([this.player1, this.player2]);
+
+    this.game.camera.follow(this.player1);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
