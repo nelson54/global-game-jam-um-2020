@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 while [ -n "$1" ]
 do
 	convert \
