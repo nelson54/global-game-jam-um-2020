@@ -19,8 +19,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hardware', '/assets/buildings/hardware.png');
     this.game.load.image('doghouse', '/assets/buildings/doghouse.png');
 
-    this.game.load.spritesheet('player-1', '/assets/sprites/player-1.png', 50, 99);
-    this.game.load.spritesheet('player-2', '/assets/sprites/player-2.png', 50, 99);
+    this.game.load.image('truck', '/assets/sprites/truck.png');
 
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('white-ball', 'assets/sprites/white-ball.png');
@@ -120,28 +119,14 @@ class Gameplay extends Phaser.State {
     this.pushable.setAll('body.collideWorldBounds', true);
     this.pushable.setAll('anchor', new Phaser.Point(0.5, 0.5));
 
-    // THIS CODE SHOULDN'T BE RUN HERE!
-    // IT SHOULD BE EXECUTED BEFORE ANY STATE IS RUN
-    let input1 = new Input.XBoxController(this.input.gamepad.pad1);
-    let input2 = new Input.XBoxController(this.input.gamepad.pad2);
+    let input = new Input.XBoxController(this.input.gamepad.pad1);
 
     Buildings.addBuildings(this.game);
 
-    this.player1 = new Player(this.game, 100, 110, 16, 12, '#4b46ff', 'player-1');
-    this.player1.controller = input1;
+    this.player = new Player(this.game, 100, 110, 'truck');
+    this.player.controller = input;
 
-    this.player2 = new Player(this.game, 1130, 640, 1280 - 80, 12, '#ff4c47', 'player-2');
-    this.player2.controller = input2;
-
-
-
-    this.player1.enemy = this.player2;
-    this.player2.enemy = this.player1;
-
-    this.players = this.game.add.physicsGroup();
-    this.players.addMultiple([this.player1, this.player2]);
-
-    this.game.camera.follow(this.player1);
+    this.game.camera.follow(this.player);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
@@ -184,27 +169,6 @@ class Gameplay extends Phaser.State {
   }
 
   update() {
-    if(this.frame >= 30) {
-      this.frame = 0;
-    }
-    this.frame += 1;
-
-    this.game.physics.arcade.collide(this.player1, this.player2);
-    this.game.physics.arcade.collide(this.players, this.furniture);
-    this.game.physics.arcade.collide(this.players, this.pushable);
-    this.game.physics.arcade.collide(this.furniture, this.pushable);
-    this.game.physics.arcade.collide(this.pushable, this.pushable);
-
-    if(!this.player1.alive) {
-      this.game.state.start('end-game2');
-    } else if (!this.player2.alive) {
-      this.game.state.start('end-game1');
-    }
-
-    for(let sprite of this.pushable.children) {
-      sprite.body.velocity.x *= 0.8;
-      sprite.body.velocity.y *= 0.8;
-    }
   }
 
   render() {
