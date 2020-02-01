@@ -1,5 +1,5 @@
 const Phaser = require('phaser-ce'),
-  Bullet = require('./sprites/bullet');
+  Bullet = require('./bullet');
 
 class Gun extends Phaser.Particles.Arcade.Emitter {
   constructor(game) {

@@ -4,13 +4,6 @@ const Input = require('../input');
 
 class Gameplay extends Phaser.State {
   preload() {
-    this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
-    this.game.load.image('sparkle-1', '/assets/sprites/sparkle1.png');
-    this.game.load.image('sparkle-2', '/assets/sprites/sparkle2.png');
-    this.game.load.image('sparkle-3', '/assets/sprites/sparkle3.png');
-
-
-
     this.game.load.spritesheet('player-1', '/assets/sprites/player-1.png', 50, 99);
     this.game.load.spritesheet('player-2', '/assets/sprites/player-2.png', 50, 99);
 
@@ -19,6 +12,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('droplet', 'assets/sprites/droplet.png');
     this.game.load.image('water-balloon', 'assets/sprites/water-balloon.png');
 
+    this.game.load.image('pillow', 'assets/sprites/pillow.png');
 
     this.game.load.image('carpet', 'assets/sprites/carpet.png');
     this.game.load.image('bed1', 'assets/sprites/bed1.png');
@@ -51,6 +45,8 @@ class Gameplay extends Phaser.State {
     this.game.backgroundMusic.play();
 
     this.game.input.enabled = true;
+    let space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+    space.onDown.add(()=> this.player1.pillowHit());
 
     this.game.boop = this.recording = this.game.add.audio('boop');
     this.recording.volume = 5;
@@ -199,8 +195,8 @@ class Gameplay extends Phaser.State {
     renderTypes[Phaser.HEADLESS] = "HEADLESS";
     this.game.debug.text(
       String(this.game.time.fps) +
-        " FPS / " +
-        renderTypes[this.game.renderType],
+      " FPS / " +
+      renderTypes[this.game.renderType],
       12,
       12);
   }

@@ -8,8 +8,8 @@ class Bullet extends Phaser.Particle {
     this.collideWorldBounds=true;
   }
 
-  hit(player) {
-    if(player) player.hurt(this.damage);
+  hit(target) {
+    if(target && target.heal) target.heal(this.damage);
     this.kill();
 
   }
