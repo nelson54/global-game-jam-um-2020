@@ -1,4 +1,4 @@
-const Building = require('./Building');
+const Building = require('./building');
 class FransHouse extends Building {
   constructor(game) {
     super(game, 1000, 400, 'frans-house');
