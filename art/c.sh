@@ -10,7 +10,9 @@ do
 		-morphology Erode Octagon \
 		-trim \
 		-resize 50% \
-		"$1" "../sprites/$1"
+		-quality 95 \
+		"$1" "../assets/$1"
 
+	optipng "$1"
 	shift
 done
