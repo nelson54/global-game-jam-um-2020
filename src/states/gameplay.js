@@ -2,9 +2,13 @@ const Phaser = require('phaser-ce');
 const Player = require('../sprites/player');
 const Input = require('../input');
 const Buildings = require('../buildings/buildings');
+const Hud = require('../hud/hud');
+
 
 class Gameplay extends Phaser.State {
   preload() {
+    this.game.load.image('truck', '/assets/sprites/truck.png');
+
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
     this.game.load.image('sparkle-1', '/assets/sprites/sparkle1.png');
     this.game.load.image('sparkle-2', '/assets/sprites/sparkle2.png');
@@ -175,6 +179,8 @@ class Gameplay extends Phaser.State {
         this.game.scale.startFullScreen(false);
       }
     });
+
+    this.game.hud = new Hud(this.game);
   }
 
   update() {
