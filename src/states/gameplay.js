@@ -9,9 +9,13 @@ class Gameplay extends Phaser.State {
   preload() {
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
-    this.game.load.image('sparkle-1', '/assets/sprites/sparkle1.png');
-    this.game.load.image('sparkle-2', '/assets/sprites/sparkle2.png');
-    this.game.load.image('sparkle-3', '/assets/sprites/sparkle3.png');
+
+    this.game.load.image('sparkle-1', '/assets/effects/yellow1.png');
+    this.game.load.image('sparkle-2', '/assets/effects/yellow2.png');
+    this.game.load.image('sparkle-3', '/assets/effects/yellow3.png');
+    this.game.load.image('white-sparkle-1', '/assets/effects/white1.png');
+    this.game.load.image('white-sparkle-2', '/assets/effects/white2.png');
+    this.game.load.image('white-sparkle-3', '/assets/effects/white3.png');
 
     this.game.load.image('frans-house', '/assets/buildings/house.png');
     this.game.load.image('workshop', '/assets/buildings/workshop.png');
