@@ -1,9 +1,16 @@
 var Phaser = require('phaser-ce');
 
 const Buttons = {
-  PRIMARY: 1,
-  SECONDARY: 2,
-  TERTIARY: 3,
+  GAS: 1,
+  BRAKE: 2,
+  SQUIRT: 3,
+  TAKE_DRUG: 4,
+  CHANGE_HAMMER_FORWARD: 5,
+  CHANGE_HAMMER_BACKWARD: 6,
+  CHANGE_DRUG_FORWARD: 7,
+  CHANGE_DRUG_BACKWARD: 8,
+  YES: 9,
+  NO: 10,
 };
 
 class XBoxController {
@@ -20,68 +27,42 @@ class XBoxController {
     return this.pad.connected;
   }
 
-  get look() {
-    let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_X);
-    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_RIGHT_Y);
-    return {
-      x: xValue ? xValue : 0.0,
-      y: yValue ? yValue : 0.0,
-    };
-  }
-
-  get lookMagnitude() {
-    let look = this.look;
-    return Math.sqrt(look.x * look.x + look.y * look.y);
-  }
-
-  get lookNormalized() {
-    let look = this.look;
-    let magnitude = this.lookMagnitude;
-    return magnitude > 0 ? {
-      x: look.x / magnitude,
-      y: look.y / magnitude,
-    } : {
-      x: 0.0,
-      y: 0.0,
-    };
-  }
-
-  get strafe() {
+  get steerX() {
     let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X);
-    let yValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y);
-    return {
-      x: xValue ? xValue : 0.0,
-      y: yValue ? yValue : 0.0,
-    };
-  }
-
-  get strafeMagnitude() {
-    let strafe = this.strafe;
-    return Math.sqrt(strafe.x * strafe.x + strafe.y * strafe.y);
-  }
-
-  get strafeNormalized() {
-    let strafe = this.strafe;
-    let magnitude = this.strafeMagnitude;
-    return magnitude > 0 ? {
-      x: strafe.x / magnitude,
-      y: strafe.y / magnitude,
-    } : {
-      x: 0.0,
-      y: 0.0,
-    };
+    return xValue ? xValue : 0.0;
   }
 
   isDown(button) {
     switch (button) {
-      case Buttons.PRIMARY:
-        return this.pad.isDown(Phaser.Gamepad.XBOX360_LEFT_TRIGGER) || this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+      case Buttons.GAS:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_LEFT_TRIGGER);
         break;
-      case Buttons.SECONDARY:
-        return this.pad.isDown(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
+      case Buttons.BRAKE:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_X);
         break;
-      case Buttons.TERTIARY:
-        return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+      case Buttons.SQUIRT:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+        break;
+      case Buttons.TAKE_DRUG:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_Y);
+        break;
+      case Buttons.CHANGE_HAMMER_FORWARD:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_UP);
+        break;
+      case Buttons.CHANGE_HAMMER_BACKWARD:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_DOWN);
+        break;
+      case Buttons.CHANGE_DRUG_FORWARD:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT);
+        break;
+      case Buttons.CHANGE_DRUG_BACKWARD:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT);
+        break;
+      case Buttons.YES:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_A);
+        break;
+      case Buttons.NO:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_B);
         break;
     }
 
@@ -90,14 +71,35 @@ class XBoxController {
 
   justPressed(button) {
     switch (button) {
-      case Buttons.PRIMARY:
-        return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_TRIGGER) || this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+      case Buttons.GAS:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_TRIGGER);
         break;
-      case Buttons.SECONDARY:
-        return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+      case Buttons.BRAKE:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_X);
         break;
-      case Buttons.TERTIARY:
-        return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
+      case Buttons.SQUIRT:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+        break;
+      case Buttons.TAKE_DRUG:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_Y);
+        break;
+      case Buttons.CHANGE_HAMMER_FORWARD:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_UP);
+        break;
+      case Buttons.CHANGE_HAMMER_BACKWARD:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_DOWN);
+        break;
+      case Buttons.CHANGE_DRUG_FORWARD:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_RIGHT);
+        break;
+      case Buttons.CHANGE_DRUG_BACKWARD:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_DPAD_LEFT);
+        break;
+      case Buttons.YES:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_A);
+        break;
+      case Buttons.NO:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_B);
         break;
     }
 
@@ -106,14 +108,35 @@ class XBoxController {
 
   justReleased(button) {
     switch (button) {
-      case Buttons.PRIMARY:
-        return this.pad.justReleased(Phaser.Gamepad.XBOX360_LEFT_TRIGGER) || this.pad.justReleased(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+      case Buttons.GAS:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_LEFT_TRIGGER);
         break;
-      case Buttons.SECONDARY:
-        return this.pad.justReleased(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
+      case Buttons.BRAKE:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_X);
         break;
-      case Buttons.TERTIARY:
-        return this.pad.justReleased(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+      case Buttons.SQUIRT:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
+        break;
+      case Buttons.TAKE_DRUG:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_Y);
+        break;
+      case Buttons.CHANGE_HAMMER_FORWARD:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_UP);
+        break;
+      case Buttons.CHANGE_HAMMER_BACKWARD:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_DOWN);
+        break;
+      case Buttons.CHANGE_DRUG_FORWARD:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_RIGHT);
+        break;
+      case Buttons.CHANGE_DRUG_BACKWARD:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_DPAD_LEFT);
+        break;
+      case Buttons.YES:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_A);
+        break;
+      case Buttons.NO:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_B);
         break;
     }
 
