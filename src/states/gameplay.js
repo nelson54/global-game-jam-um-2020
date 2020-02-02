@@ -3,6 +3,7 @@ const Player = require('../sprites/player');
 const Input = require('../input');
 const Buildings = require('../buildings/buildings');
 const Hud = require('../hud/hud');
+const MenuBuyDrugs = require('../menus/menu-buy-drugs');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -62,18 +63,12 @@ class Gameplay extends Phaser.State {
   create() {
     this.game.input.enabled = true;
     let input = new Input.XBoxController(this.input.gamepad.pad1);
-
+    let menu = new MenuBuyDrugs(this.game);
     this.game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.setImpactEvents(true);
     game.physics.p2.restitution = 0.9;
 
     this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
-
-   this.game.input.keyboard.onPressCallback = function(pressed) {
-      if (pressed === "8") {
-        this.game.state.start('menuBuyDrugs');
-      }
-    };
 
     this.player = new Player(this.game, 100, 110, 'truck');
 
