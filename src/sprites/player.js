@@ -12,7 +12,6 @@ class Player extends Phaser.Sprite {
 
     this.scale.set(0.4);
     this.anchor.set(0.75, 0.5);
-    this.angle = 180;
 
     this.length = 0.6 * this.width;
 
@@ -21,6 +20,8 @@ class Player extends Phaser.Sprite {
     game.physics.p2.enable(this);
     this.enableBody = true;
     this.body.collideWorldBounds = true;
+    this.body.rotateRight(180);
+
     game.add.existing(this);
   }
 
@@ -61,12 +62,22 @@ class Player extends Phaser.Sprite {
 
     this.velocity = Math.sign(this.velocity) * Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 
-    this.x += vector.x;
-    this.y += vector.y;
-    this.angle += 180.0 * baseTurn / Math.PI;
+    //this.body.x(vector.x);
+    //this.body.x(vector.y);
+
+    this.body.setZeroVelocity();
+    this.body.moveRight(200 * vector.x);
+    this.body.moveDown(200 * vector.y);
+    this.body.setZeroRotation();
+    this.body.rotateRight(100 * 180 * baseTurn / Math.PI);
+
+    //this.body.x += vector.x;
+    //this.body.y += vector.y;
+    //this.body.angle += 180.0 * baseTurn / Math.PI;
 
     if (this.controller.isDown(Input.Buttons.YES)) {
       console.log(this.velocity);
+      console.log(this.body.velocity.x);
     }
   }
 }
