@@ -89,24 +89,18 @@ class Player extends Phaser.Sprite {
       this.game.gameState.current.playerState.activeDrug = activeDrug.prev;
     }
 
-<<<<<<< HEAD
     if (this.controller.justPressed(Input.Buttons.TAKE_DRUG)) {
       let activeDrugName = this.game.gameState.current.playerState.activeDrug;
       this.game.gameState.current.playerState.drugs[activeDrugName].dosage++;
       console.log(this.game.gameState.current.playerState.drugs[activeDrugName].dosage);
     }
 
-
-=======
->>>>>>> Heal buildings with hammers.
     let activeHammer = this.game.gameState.current.gameState.hammers[this.game.gameState.current.playerState.activeHammer];
     if (this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_FORWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.next
     } else if(this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_BACKWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.prev
     }
-<<<<<<< HEAD
-=======
 
     if (this.controller.isDown(Input.Buttons.SQUIRT)) {
       let fired = this.squirter.use();
@@ -134,7 +128,6 @@ class Player extends Phaser.Sprite {
         }
       }
     }
->>>>>>> Heal buildings with hammers.
   }
 
   hitBuilding(_playerBody, buildingBody) {
