@@ -133,6 +133,7 @@ class Gameplay extends Phaser.State {
 
     if (state.playerState.health < 0) {
       console.log("YOUR DEAD");
+      this.game.state.start('lose');
     }
 
     this.hud.updateWith(state);

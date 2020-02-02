@@ -35,7 +35,8 @@ module.exports = {
       .reduce((total, damage) => total + damage, 0);
 
     if(totalDamage === 0) {
-      console.log('You Win.')
+      console.log("You win");
+      game.state.start('win');
     }
   }
 

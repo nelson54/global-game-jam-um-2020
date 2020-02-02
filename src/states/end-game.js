@@ -1,15 +1,15 @@
 const Phaser = require('phaser-ce');
 
 class EndGame extends Phaser.State {
-  constructor(game, player) {
+  constructor(game, title) {
     super();
     this.game = game;
-    this.title = player;
+    this.title = title;
   }
 
   create() {
     this.game.stage.backgroundColor = "#30b3ff";
-    var text = this.game.add.text(this.game.world.centerX, this.game.world.centerY, this.title + ' wins');
+    var text = this.game.add.text(this.game.world.centerX - 650, 200, this.title);
     text.x -= text.width / 2;
     text.y -= text.height / 2;
 

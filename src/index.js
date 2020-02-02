@@ -8,8 +8,8 @@ class JamGame extends Phaser.Game {
   constructor() {
     super(1024, 768, Phaser.AUTO, document.querySelector('body'), {
       preload() {
-        this.game.state.add('end-game1', new EndGame(this.game, "Player 1"));
-        this.game.state.add('end-game2', new EndGame(this.game, "Player 2"));
+        this.game.state.add('win', new EndGame(this.game, "You Win"));
+        this.game.state.add('lose', new EndGame(this.game, "You Lose"));
         this.game.state.add('gameplay', new Gameplay());
         this.game.world.setBounds(0, 0, 1920, 1920);
         //this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;

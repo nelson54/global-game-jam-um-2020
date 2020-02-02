@@ -96,7 +96,7 @@ class Player extends Phaser.Sprite {
     if (this.controller.justPressed(Input.Buttons.TAKE_DRUG)) {
       let activeDrugName = this.game.gameState.current.playerState.activeDrug;
       this.game.gameState.current.playerState.drugs[activeDrugName].dosage++;
-      console.log(this.game.gameState.current.playerState.drugs[activeDrugName].dosage);
+      console.log(activeDrugName + ' ' + this.game.gameState.current.playerState.drugs[activeDrugName].dosage);
     }
 
 
