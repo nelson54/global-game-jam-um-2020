@@ -30,11 +30,13 @@ module.exports = {
 
 
   checkBuildings: (game) => {
-    let totalDamage = Object.values(game.buildings)
-      .map((building) => building.getDamage())
-      .reduce((total, damage) => total + damage, 0);
+    let repairedBuildings = Object.values(game.buildings)
+      .filter((building) => {
+        building.getDamage();
+        return building.health >= building.maxHealth
+      }).length
 
-    if(totalDamage === 0) {
+    if(repairedBuildings >= 6) {
       console.log("You win");
       game.state.start('win');
     }
