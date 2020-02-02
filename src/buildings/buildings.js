@@ -34,7 +34,7 @@ module.exports = {
       .map((building) => building.getDamage())
       .reduce((total, damage) => total + damage, 0);
 
-    if(totalDamage <= 0) {
+    if(totalDamage === 0) {
       console.log('You Win.')
     }
   }
