@@ -33,6 +33,7 @@ class Building extends Phaser.Sprite {
 
   getDamage() {
     if(this.health < 0) {
+      this.game.gameState.current.playerState.health = 0;
       this.destroy();
     }
     return this.maxHealth - this.health;
