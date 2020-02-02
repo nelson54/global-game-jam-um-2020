@@ -9,6 +9,9 @@ function mapCurve(x) {
 class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
+
+    this.squirter = new HammerSquirter(game, this);
+
     game.add.existing(this);
 
     this.length = 0.6 * this.width;
@@ -26,8 +29,6 @@ class Player extends Phaser.Sprite {
     this.body.angle = 180;
 
     this.anchor.set(0.75, 0.5);
-
-    this.squirter = new HammerSquirter(game, this);
   }
 
   update() {
