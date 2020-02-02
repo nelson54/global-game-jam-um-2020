@@ -28,7 +28,7 @@ class MenuBuyDrugs {
 
   drawTitle() {
     let title = "Buy Drugs!";
-    this.game.add.text(0, 0, title, MenuText.getTitleStyle());
+    this.title = this.game.add.text(0, 0, title, MenuText.getTitleStyle());
   };
 
   drawMenu() {
@@ -79,6 +79,7 @@ class MenuBuyDrugs {
   }
 
   escape() {
+    this.title.destroy();
     _.each(this.menuText, function(text) {
       text.destroy();
     });
