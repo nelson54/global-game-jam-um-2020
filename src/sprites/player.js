@@ -1,6 +1,6 @@
 const Phaser = require('phaser-ce');
 const Input = require('../input');
-const HammerGun = require('../gun/hammer-gun');
+const HammerSquirter = require('../hammer-squirter/hammer-squirter');
 
 function mapCurve(x) {
   return Math.max(Math.min(x * x, 1), 0);
@@ -26,6 +26,8 @@ class Player extends Phaser.Sprite {
     this.body.angle = 180;
 
     this.anchor.set(0.75, 0.5);
+
+    this.squirter = new HammerSquirter(game, this);
   }
 
   update() {
@@ -71,9 +73,8 @@ class Player extends Phaser.Sprite {
     this.body.setZeroRotation();
     this.body.rotateRight(20 * 180 * baseTurn / Math.PI);
 
-    if (this.controller.isDown(Input.Buttons.YES)) {
-      console.log(this.velocity);
-      console.log(this.body.velocity.x);
+    if (this.controller.isDown(Input.Buttons.SQUIRT)) {
+      this.squirter.use();
     }
   }
 }

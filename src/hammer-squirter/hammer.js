@@ -3,19 +3,21 @@ let Bullet = require('./bullet');
 
 const HammerEffect = require('./hammer-effect');
 
-class Hammer extends Bullet {
-  constructor(game, x, y, hammer='hammer-1', heals=10) {
+class Hammer extends Phaser.Particle {
+  constructor(game, x, y, hammer='hammers/regular', heals=10) {
     super(game, x, y, hammer);
-
-
-
-    this.heals = 10;
+    this.collideWorldBounds = true;
+    this.heals = heals;
   }
 
   hit(target) {
-    super.hit();//target
     new HammerEffect(this.game, this.x, this.y);
-    //this.game.rocketLaunch.play();
+  }
+
+  update() {
+    if (this.alive) {
+
+    }
   }
 }
 
