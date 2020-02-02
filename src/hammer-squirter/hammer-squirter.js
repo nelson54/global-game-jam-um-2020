@@ -7,7 +7,7 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
 
     this.player = player;
 
-    //this.particleClass = Hammer;
+    this.particleClass = Hammer;
     this.maxParticles = 100;
 
     this.makeParticles(undefined, undefined, undefined, undefined, true);
