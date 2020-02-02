@@ -5,12 +5,20 @@ class MenuBuyDrugs {
 
   constructor(game) {
     this.game = game;
+    this.menuList = [];
     this.addKeys();
   }
 
   displayMenu() {
-    this.drawTitle();
-    this.drawMenu();
+    if (!this.menuAlreadyDrawn()) {
+      this.selectedItem = 0;
+      this.drawTitle();
+      this.drawList();
+    }
+  }
+
+  menuAlreadyDrawn() {
+    return this.menuList.length > 0;
   }
 
   addKeys() {
@@ -31,62 +39,50 @@ class MenuBuyDrugs {
     this.title = this.game.add.text(0, 0, title, MenuText.getTitleStyle());
   };
 
-  drawMenu() {
-    let menuItems = this.getMenuItems();
+  drawList() {
+    let drugs = _.pluck(game.gameState.current.gameState.drugs, 'display_name');
     let positionX = this.game.world.centerX - 650;
     let positionY = 200;
     let menuItemPadding = 75;
-    this.menuText = [];
-    this.selectedItem = 0;
-    _.each(menuItems, function(menuItem) {
-      this.menuText.push(this.game.add.text(positionX, positionY, menuItem.name, menuItem.style));
+    _.each(drugs, function(drug) {
+      this.menuList.push(this.game.add.text(positionX, positionY, drug, MenuText.getMenuItemStyle()));
       positionY += menuItemPadding;
     }, this);
-  }
-
-  getMenuItems() {
-    let itemNames = _.pluck(game.gameState.current.gameState.drugs, 'display_name');
-    let menuItems = _.map(itemNames, function(itemName) {
-      return {
-        'name' : itemName,
-        'style' : MenuText.getMenuItemStyle()
-      }
-    });
-    menuItems[0].style = MenuText.getMenuItemHoverStyle();
-    return menuItems;
+    this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle());
   }
 
   up() {
     this.hoverOffCurrentSelected();
     this.selectedItem--;
     if (this.selectedItem < 0) {
-      this.selectedItem = this.menuText.length -1;
+      this.selectedItem = this.menuList.length -1;
     }
-    this.menuText[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle(), true);
+    this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle(), true);
   }
 
   down() {
     this.hoverOffCurrentSelected();
     this.selectedItem++;
-    if (this.selectedItem > this.menuText.length -1) {
+    if (this.selectedItem > this.menuList.length -1) {
       this.selectedItem = 0;
     }
-    this.menuText[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle(), true);
+    this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle(), true);
   }
 
   select() {
-    this.menuText[this.selectedItem].setStyle(MenuText.getMenuItemSelectStyle(), true);
+    this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemSelectStyle(), true);
   }
 
   escape() {
     this.title.destroy();
-    _.each(this.menuText, function(text) {
+    _.each(this.menuList, function(text) {
       text.destroy();
     });
+    this.menuList = [];
   }
 
   hoverOffCurrentSelected() {
-    this.menuText[this.selectedItem].setStyle(MenuText.getMenuItemStyle(), true);
+    this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemStyle(), true);
   }
 
 }
