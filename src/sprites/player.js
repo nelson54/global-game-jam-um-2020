@@ -52,7 +52,7 @@ class Player extends Phaser.Sprite {
     this.velocity += (reverse ? 0 : gas) * gasAcceleration;
     this.velocity *= (1.0 - dampening);
     if (reverse && this.velocity < 0.05) {
-      this.velocity -= 0.05;
+      this.velocity -= 0.075;
     }
     if (braking) {
       this.velocity *= (1.0 - brakeDampening);
@@ -69,7 +69,7 @@ class Player extends Phaser.Sprite {
     this.body.moveRight(50 * vector.x);
     this.body.moveDown(50 * vector.y);
     this.body.setZeroRotation();
-    this.body.rotateRight(30 * 180 * baseTurn / Math.PI);
+    this.body.rotateRight(20 * 180 * baseTurn / Math.PI);
 
     if (this.controller.isDown(Input.Buttons.YES)) {
       console.log(this.velocity);
