@@ -68,8 +68,6 @@ class Player extends Phaser.Sprite {
     this.body.setZeroRotation();
     this.body.rotateRight(30 * 180 * baseTurn / Math.PI);
 
-    this.body.rotateRight(10);
-
     if (this.controller.isDown(Input.Buttons.YES)) {
       console.log(this.velocity);
       console.log(this.body.velocity.x);
