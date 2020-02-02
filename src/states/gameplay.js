@@ -6,6 +6,8 @@ const Hud = require('../hud/hud');
 
 class Gameplay extends Phaser.State {
   preload() {
+    game.load.physics('physicsData', '/assets/physics/sprites.json');
+
     this.game.load.image('transparent', '/assets/nil.png');
     this.game.load.image('red', '/assets/bars/red.png');
     this.game.load.image('green', '/assets/bars/green.png');
@@ -65,6 +67,7 @@ class Gameplay extends Phaser.State {
 
     this.game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.setImpactEvents(true);
+    game.physics.p2.restitution = 0.9;
 
     this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
 

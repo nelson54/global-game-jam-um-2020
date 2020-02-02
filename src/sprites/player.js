@@ -17,13 +17,16 @@ class Player extends Phaser.Sprite {
 
     this.velocity = 0.0;
 
-    game.physics.p2.enable(this);
+    game.add.existing(this);
+  }
+
+  addPhysics() {
+    this.game.physics.p2.enable(this, true);
     this.enableBody = true;
     this.body.collideWorldBounds = true;
     this.body.rotateRight(180);
-
-    game.add.existing(this);
   }
+
 
   update() {
     super.update();
