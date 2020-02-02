@@ -49,14 +49,16 @@ class Player extends Phaser.Sprite {
       (this.velocity * Math.cos(turn * Math.PI / 180.0) + this.length)
     ) : 0.0;
 
-    const gasAcceleration = 0.15;
-    const dampening = 0.01;
-    const brakeDampening = 0.075;
+    var skeeze = (10 * this.game.gameState.current.playerState.drugs.skeeze) + 1;
+
+    var gasAcceleration = 0.15 * skeeze;
+    var dampening = 0.01;
+    var brakeDampening = 0.075 * skeeze;
 
     this.velocity += (reverse ? 0 : gas) * gasAcceleration;
     this.velocity *= (1.0 - dampening);
     if (reverse && this.velocity < 0.05) {
-      this.velocity -= 0.075;
+      this.velocity -= 0.075 * skeeze;
     }
     if (braking) {
       this.velocity *= (1.0 - brakeDampening);

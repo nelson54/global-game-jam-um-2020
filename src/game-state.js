@@ -25,6 +25,7 @@ class GameState {
     this.debug = false;
   }
 
+  /*
   adjustHealth(amount) {
     let currentHealth = this.current.playerState.health,
       newHealth = currentHealth = Math.min(currentHealth + amount, this.current.gameState.player.healthMax);
@@ -35,6 +36,7 @@ class GameState {
       health: currentHealth
     })
   }
+  */
 
   adjustHammers(type, amount) {
     this.events.emit({
@@ -98,7 +100,8 @@ const initialState = {
     },
     effects: {
 
-    }
+    },
+    drugs: {skeeze: 1, clf3: 0, f73_k12_b: 0, canadian_frog: 0}
   },
   gameState: {
     player: {
@@ -109,25 +112,29 @@ const initialState = {
         name: "skeeze",
         display_name: "Skeeze",
         price: 0,
-        duration: 0
+        duration: 30,
+        damage: 2e-2,
       },
       clf3: {
         name: "clf3",
         display_name: "Chlorine Triflouride",
         price: 0,
-        duration: 0
+        duration: 30,
+        damage: 2e-2,
       },
-      research: {
+      f73_k12_b: {
         name: "f73_k12_b",
         display_name: "F73-k12-b",
         price: 0,
-        duration: 0
+        duration: 30,
+        damage: 2e-2,
       },
       canadian_frog: {
         name: "canadian_frog",
         display_name: "Canadian Frog",
         price: 0,
-        duration: 0
+        duration: 30,
+        damage: 2e-2,
       }
     },
     hammers: {

@@ -86,10 +86,28 @@ class Gameplay extends Phaser.State {
       }
     });
 
-    this.game.hud = new Hud(this.game);
+    this.hud = new Hud(this.game);
   }
 
   update() {
+    var state = this.game.gameState.current;
+    for (var drugName in state.playerState.drugs) {
+      var drugObj = state.gameState.drugs[drugName];
+      const step = 1 / (drugObj.duration * 60);
+      if (state.playerState.drugs[drugName] < step) {
+        state.playerState.drugs[drugName] = 0;
+      } else {
+        state.playerState.drugs[drugName] -= step;
+        state.playerState.health -=
+          drugObj.damage * state.playerState.drugs[drugName];
+      }
+    }
+    
+    if (state.playerState.health < 0) {
+      alert("YOUR DEAD");
+    }
+
+    this.hud.updateWith(state);
   }
 
   render() {
@@ -104,6 +122,11 @@ class Gameplay extends Phaser.State {
         renderTypes[this.game.renderType],
       12,
       12);
+
+    this.game.debug.text(
+      this.game.gameState.current.playerState.drugs.skeeze.toString(),
+      12,
+      24);
   }
 }
 
