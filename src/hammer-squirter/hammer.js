@@ -1,5 +1,4 @@
 let Phaser = require('phaser-ce');
-let Bullet = require('./bullet');
 
 const HammerEffect = require('./hammer-effect');
 
