@@ -103,7 +103,7 @@ const initialState = {
         next: 'clf3'
       },
       clf3: {
-        dosage: 0,
+        dosage: 1,
         inventory: 0,
         prev: 'skeeze',
         next: 'f73_k12_b'

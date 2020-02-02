@@ -16,7 +16,6 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
     //this.sound = game.boop;
 
     this.bulletSpeed = 800;
-    this.cooldown = 200;
 
     game.add.existing(this);
   }
