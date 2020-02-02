@@ -46,7 +46,7 @@ class XBoxController {
         return this.pad.isDown(Phaser.Gamepad.XBOX360_X);
         break;
       case Buttons.REVERSE:
-        return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_LEFT_BUMPER);
         break;
       case Buttons.SQUIRT:
         return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
