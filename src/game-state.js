@@ -22,7 +22,7 @@ class GameState {
   constructor(obj) {
     //this.events = new Phaser.Events.EventEmitter();
     this.current = obj;
-    this.debug = true;
+    this.debug = false;
   }
 
   adjustHealth(amount) {
