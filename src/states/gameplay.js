@@ -42,7 +42,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hud/right', '/assets/hud/right.png');
     this.game.load.image('hud/down', '/assets/hud/down.png');
     this.game.load.image('hud/no', '/assets/hud/no.png');
-    
+
     this.game.load.image('smile', '/assets/smile.png');
 
     this.game.load.image('drugs/skeeze', '/assets/drugs/skeeze.png');
@@ -53,7 +53,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('ball_peen', '/assets/hammers/ball_peen.png');
     this.game.load.image('brick', '/assets/hammers/brick.png');
     this.game.load.image('dildo', '/assets/hammers/dildo.png');
-    this.game.load.image('gold', '/assets/hammers/golden.png');
+    this.game.load.image('golden', '/assets/hammers/golden.png');
     this.game.load.image('steel', '/assets/hammers/regular.png');
     this.game.load.image('rock', '/assets/hammers/rock.png');
 
@@ -76,8 +76,8 @@ class Gameplay extends Phaser.State {
 
     Buildings.addBuildings(this.game, this.player);
 
-    let squirter = new HammerSquirter(this.game, this.player);
-    this.player.equipSquirter(squirter);
+    this.squirter = new HammerSquirter(this.game, this.player);
+    this.player.equipSquirter(this.squirter);
 
     this.player.body.collides(this.game.buildingsCollisionGroup, this.player.hitBuilding, this.player);
 
@@ -99,6 +99,7 @@ class Gameplay extends Phaser.State {
     this.hud = new Hud(this.game);
 
     this.smile = this.game.add.sprite(512, 384, 'smile');
+    this.smile.fixedToCamera = true;
     this.smile.anchor.set(0.5, 0.5);
   }
 
@@ -122,6 +123,9 @@ class Gameplay extends Phaser.State {
     this.smile.alpha = f73_dose;
     this.smile.angle += 60 / 60;
 
+    var clf3 = game.gameState.current.playerState.drugs.clf3.dosage;
+    this.squirter.cooldown = 200 * (1 - clf3) + 50 * clf3;
+
     if (state.playerState.health < 0) {
       alert("YOUR DEAD");
     }
@@ -143,7 +147,7 @@ class Gameplay extends Phaser.State {
       12);
 
     this.game.debug.text(
-      this.game.gameState.current.playerState.drugs.f73_k12_b.dosage.toString(),
+      this.game.gameState.current.playerState.drugs.clf3.dosage.toString(),
       12,
       24);
   }
