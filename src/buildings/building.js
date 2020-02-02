@@ -25,7 +25,9 @@ class Building extends Phaser.Sprite {
     this.body.collides([this.game.playerCollisionGroup]);
   }
 
-  heal(hammer) {
+  heal(amount) {
+    this.health += amount;
+
     this.healthBar.updateValues(this.health, this.maxHealth);
   }
 }

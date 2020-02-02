@@ -106,6 +106,8 @@ class Player extends Phaser.Sprite {
   }
 
   hitBuilding(_playerBody, buildingBody) {
+    this.game.gameState.current.playerState.health -= (this.velocity * .5);
+    buildingBody.sprite.heal(-this.velocity);
     this.velocity = 0;
   }
 }
