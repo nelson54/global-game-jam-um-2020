@@ -52,7 +52,7 @@ class Hud extends Phaser.Group {
     this.doglars = new Phaser.Text(game, 650, 50, "", style);
     this.addChild(this.doglars);
 
-    this.updateWith(GameState.load()); // TODO.
+    this.updateWith(game.gameState.current); // TODO.
 
     game.add.existing(this);
   }
