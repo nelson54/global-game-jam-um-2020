@@ -36,8 +36,8 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
         y: -Math.sin(this.player.rotation),
       };
 
-      this.x = this.player.x + this.player.width * 0.75 * vector.x;
-      this.y = this.player.y + this.player.width * 0.75 * vector.y;
+      this.x = this.player.x + this.player.width * 0.8 * vector.x;
+      this.y = this.player.y + this.player.width * 0.8 * vector.y;
 
       this.maxParticleSpeed = new Phaser.Point(vector.x * this.bulletSpeed, vector.y * this.bulletSpeed);
       this.minParticleSpeed = this.maxParticleSpeed;

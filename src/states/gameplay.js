@@ -4,6 +4,7 @@ const Input = require('../input');
 const Buildings = require('../buildings/buildings');
 const Hud = require('../hud/hud');
 const MenuBuyDrugs = require('../menus/menu-buy-drugs');
+const HammerSquirter = require('../hammer-squirter/hammer-squirter');
 
 class Gameplay extends Phaser.State {
   preload() {
@@ -65,10 +66,12 @@ class Gameplay extends Phaser.State {
     this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
 
     this.player = new Player(this.game, 100, 110, 'truck');
+    this.player.controller = input;
 
     Buildings.addBuildings(this.game, this.player);
 
-    this.player.controller = input;
+    let squirter = new HammerSquirter(this.game, this.player);
+    this.player.equipSquirter(squirter);
 
     this.game.camera.follow(this.player);
 

@@ -1,6 +1,5 @@
 const Phaser = require('phaser-ce');
 const Input = require('../input');
-const HammerSquirter = require('../hammer-squirter/hammer-squirter');
 
 function mapCurve(x) {
   return Math.max(Math.min(x * x, 1), 0);
@@ -9,8 +8,6 @@ function mapCurve(x) {
 class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
-
-    this.squirter = new HammerSquirter(game, this);
 
     game.add.existing(this);
 
@@ -29,6 +26,10 @@ class Player extends Phaser.Sprite {
     this.body.angle = 180;
 
     this.anchor.set(0.75, 0.5);
+  }
+
+  equipSquirter(squirter) {
+    this.squirter = squirter;
   }
 
   update() {
