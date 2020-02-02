@@ -1,28 +1,25 @@
 
 class Bar extends Phaser.Sprite {
-  constructor(game, x, y, width, numerator, denominator) {
-    super(game, x, y, 'transparent');
+  constructor(parent, x, y, numerator, denominator, width=100, height=20) {
+    super(parent.game, x, y, 'transparent');
 
     this.width = width;
-
-    this.leftSprite = new Phaser.Sprite(game, 0, 0, 'red');
+    this.height = height;
+    this.leftSprite = new Phaser.Sprite(game, 0, 0, 'green');
     this.rightSprite = new Phaser.Sprite(game, 0, 0, 'red');
+
+    this.leftSprite.height = this.rightSprite.height = height;
 
     this.updateValues(numerator, denominator);
 
     parent.addChild(this);
+
   }
 
-  updateValues(numerator, denominator){
-    this.numerator = numerator;
-    this.denominator = denominator;
-
-    let leftWidth = (numerator/denominator) * this.width;
-    let rightWidth =
-
-    this.leftSprite
+  updateValues(numerator, denominator) {
+    this.leftSprite.width = this.rightSprite.x = (numerator / denominator) * this.width;
+    this.rightSprite.width = this.width - this.leftSprite.width;
   }
-
 }
 
 module.exports = Bar;
