@@ -3,14 +3,15 @@ var Phaser = require('phaser-ce');
 const Buttons = {
   GAS: 1,
   BRAKE: 2,
-  SQUIRT: 3,
-  TAKE_DRUG: 4,
-  CHANGE_HAMMER_FORWARD: 5,
-  CHANGE_HAMMER_BACKWARD: 6,
-  CHANGE_DRUG_FORWARD: 7,
-  CHANGE_DRUG_BACKWARD: 8,
-  YES: 9,
-  NO: 10,
+  REVERSE: 3,
+  SQUIRT: 4,
+  TAKE_DRUG: 5,
+  CHANGE_HAMMER_FORWARD: 6,
+  CHANGE_HAMMER_BACKWARD: 7,
+  CHANGE_DRUG_FORWARD: 8,
+  CHANGE_DRUG_BACKWARD: 9,
+  YES: 10,
+  NO: 11,
 };
 
 class XBoxController {
@@ -27,9 +28,13 @@ class XBoxController {
     return this.pad.connected;
   }
 
-  get steerX() {
+  get movement() {
     let xValue = this.pad.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X);
-    return xValue ? xValue : 0.0;
+    let yValue = this.pad.buttonValue(Phaser.Gamepad.XBOX360_LEFT_TRIGGER);
+    return {
+      x: xValue ? xValue : 0.0,
+      y: yValue ? yValue : 0.0,
+    };
   }
 
   isDown(button) {
@@ -39,6 +44,9 @@ class XBoxController {
         break;
       case Buttons.BRAKE:
         return this.pad.isDown(Phaser.Gamepad.XBOX360_X);
+        break;
+      case Buttons.REVERSE:
+        return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
         break;
       case Buttons.SQUIRT:
         return this.pad.isDown(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
@@ -69,13 +77,16 @@ class XBoxController {
     return false;
   }
 
-  justPressed(button) {
+  /*justPressed(button) {
     switch (button) {
       case Buttons.GAS:
         return this.pad.justPressed(Phaser.Gamepad.XBOX360_LEFT_TRIGGER);
         break;
       case Buttons.BRAKE:
         return this.pad.justPressed(Phaser.Gamepad.XBOX360_X);
+        break;
+    case Buttons.REVERSE:
+        return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
         break;
       case Buttons.SQUIRT:
         return this.pad.justPressed(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
@@ -114,6 +125,9 @@ class XBoxController {
       case Buttons.BRAKE:
         return this.pad.justReleased(Phaser.Gamepad.XBOX360_X);
         break;
+    case Buttons.REVERSE:
+        return this.pad.justReleased(Phaser.Gamepad.XBOX360_RIGHT_BUMPER);
+        break;
       case Buttons.SQUIRT:
         return this.pad.justReleased(Phaser.Gamepad.XBOX360_RIGHT_TRIGGER);
         break;
@@ -141,7 +155,7 @@ class XBoxController {
     }
 
     return false;
-  }
+  }*/
 }
 
 module.exports = {
