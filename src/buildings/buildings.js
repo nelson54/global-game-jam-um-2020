@@ -7,6 +7,8 @@ module.exports = {
 
     let collisionGroup = game.physics.p2.createCollisionGroup();
     var buildingMasks = game.add.group();
+    buildingMasks.x = 0;
+    buildingMasks.y = 0;
     buildingMasks.enableBody = true;
     buildingMasks.physicsBodyType = Phaser.Physics.P2JS;
 
