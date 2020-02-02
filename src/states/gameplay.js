@@ -34,99 +34,17 @@ class Gameplay extends Phaser.State {
 
 
     this.game.load.image('map', 'assets/map.png');
-    this.game.load.image('bed1', 'assets/sprites/bed1.png');
-    this.game.load.image('bed2', 'assets/sprites/bed2.png');
-    this.game.load.image('desk', 'assets/sprites/desk.png');
-    this.game.load.image('chair', 'assets/sprites/chair.png');
-    this.game.load.image('beanbag', 'assets/sprites/beanbag.png');
-    this.game.load.image('machine-gun-pickup', 'assets/sprites/machine-gun-pickup.png');
-    this.game.load.image('rocket-launcher-pickup', 'assets/sprites/rocket-launcher-pickup.png');
-    this.game.load.image('pistol-pickup', 'assets/sprites/pistol-pickup.png');
-    this.game.load.image('life', 'assets/sprites/life.png');
-
-    this.game.load.audio('snap', 'assets/audio/snap.mp3');
-    this.game.load.audio('machine-gun', 'assets/audio/machine_gun_sound_to_loop.ogg');
-
-    this.game.load.audio('boop', 'assets/audio/boop.ogg');
-
-    this.game.load.audio('woosh', 'assets/audio/woosh.ogg');
-    this.game.load.audio('rocket-launch', 'assets/audio/rocket_launch.ogg');
-
-    this.game.load.audio('oof', 'assets/audio/oof.ogg');
-
-    this.game.load.audio('darkling', 'assets/audio/darkling.mp3');
   }
 
   create() {
-    this.game.backgroundMusic = this.game.add.audio('darkling');
-    this.game.backgroundMusic.repeats = true;
-    this.game.backgroundMusic.volume = .4;
-    this.game.backgroundMusic.play();
-
     this.game.input.enabled = true;
-
-    this.game.boop = this.recording = this.game.add.audio('boop');
-    this.recording.volume = 5;
-
-    this.recording.allowMultiple = true;
-
-    this.game.snap = this.game.add.audio('machine-gun');
-    this.game.snap.allowMultiple = true;
-
-    this.game.woosh = this.game.add.audio('woosh');
-    this.game.woosh.allowMultiple = true;
-
-    this.game.oof = this.game.add.audio('oof');
-    this.game.oof.allowMultiple = true;
-
-    this.game.rocketLaunch = this.game.add.audio('rocket-launch');
-    this.game.rocketLaunch.volume = 5;
+    let input = new Input.XBoxController(this.input.gamepad.pad1);
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
     this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
 
-    let bed1 = this.game.add.sprite(280, 160, "bed1");
-    bed1.scale.set(0.6);
-    let bed2 = this.game.add.sprite(900, 560, "bed2");
-    bed2.scale.set(0.6);
-    bed2.angle = 180;
-
-    let desk1 = this.game.add.sprite(150, 450, "desk");
-    desk1.scale.set(0.6);
-    desk1.angle = 180;
-    let desk2 = this.game.add.sprite(1150, 450, "desk");
-    desk2.scale.set(0.6);
-    desk2.angle = 0;
-
-    let chair1 = this.game.add.sprite(150, 530, "chair");
-    chair1.scale.set(0.6);
-    chair1.angle = 180;
-    let chair2 = this.game.add.sprite(1150, 380, "chair");
-    chair2.scale.set(0.6);
-    chair2.angle = 0;
-
-    this.furniture = this.game.add.physicsGroup();
-    this.furniture.addMultiple([bed1, bed2, desk1, desk2]);
-    this.furniture.setAll('body.immovable', true);
-    this.furniture.setAll('anchor', new Phaser.Point(0.5, 0.5));
-
-    this.pushable = this.game.add.physicsGroup();
-    this.pushable.addMultiple([chair1, chair2]);
-
-    this.pushable.addMultiple([
-      this.game.add.sprite(660, 100, "beanbag"),
-      this.game.add.sprite(450, 310, "beanbag"),
-      this.game.add.sprite(360, 570, "beanbag"),
-      this.game.add.sprite(1090, 120, "beanbag"),
-      this.game.add.sprite(940, 320, "beanbag"),
-      this.game.add.sprite(670, 600, "beanbag")]);
-
-    this.pushable.setAll('body.collideWorldBounds', true);
-    this.pushable.setAll('anchor', new Phaser.Point(0.5, 0.5));
-
-    let input = new Input.XBoxController(this.input.gamepad.pad1);
-    this.game.input.keyboard.onPressCallback = function(pressed) {
+   this.game.input.keyboard.onPressCallback = function(pressed) {
       if (pressed === "8") {
         this.game.state.start('menuBuyDrugs');
       }
@@ -141,32 +59,6 @@ class Gameplay extends Phaser.State {
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
-
-    this.frame = 0;
-
-    this.peaceEnabled = true;
-    this.peaceTimerSeconds = 10;
-    this.peaceTimerText = this.game.add.text(this.game.world.centerX, this.game.world.centerY, "Prepare!", {
-      "fill": "white",
-      "font": "bold 40pt Comic Sans MS",
-      "strokeThickness": 8
-    });
-    this.peaceTimerText.anchor.set(0.5, 0.5);
-    this.peaceTimerCountdown = this.game.add.tween(this.peaceTimerText);
-    this.peaceTimerCountdown.to({ alpha: 0.0 }, 1000, Phaser.Easing.Sinusoidal.Out);
-    this.peaceTimerCountdown.onComplete.add(() => {
-      this.peaceTimerSeconds -= 1;
-      this.peaceTimerText.alpha = 1.0;
-      if (this.peaceTimerSeconds > 0) {
-        this.peaceTimerText.text = String(this.peaceTimerSeconds);
-        this.peaceTimerCountdown.start();
-      } else {
-        this.peaceEnabled = false;
-        this.peaceTimerText.text = "Attack!";
-        this.game.add.tween(this.peaceTimerText).to({ alpha: 0.0 }, 2000, Phaser.Easing.Sinusoidal.Out).start();
-      }
-    }, this);
-    this.peaceTimerCountdown.start();
 
     this.game.input.activePointer.leftButton.onDown.add(() => {
       if (this.game.scale.isFullScreen) {
