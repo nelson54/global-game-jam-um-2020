@@ -51,12 +51,6 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hammers/regular', '/assets/hammers/regular.png');
     this.game.load.image('hammers/rock', '/assets/hammers/rock.png');
 
-    this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
-    this.game.load.image('white-ball', 'assets/sprites/white-ball.png');
-    this.game.load.image('droplet', 'assets/sprites/droplet.png');
-    this.game.load.image('water-balloon', 'assets/sprites/water-balloon.png');
-
-
     this.game.load.image('map', 'assets/map.png');
   }
 
