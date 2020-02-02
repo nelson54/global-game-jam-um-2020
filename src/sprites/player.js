@@ -11,7 +11,6 @@ class Player extends Phaser.Sprite {
     super(game, x, y, key);
     game.add.existing(this);
 
-    this.scale.set(0.4);
     this.anchor.set(0.75, 0.5);
 
     this.length = 0.6 * this.width;
@@ -22,7 +21,7 @@ class Player extends Phaser.Sprite {
     this.enableBody = true;
     this.body.collideWorldBounds = true;
     this.body.clearShapes();
-    this.body.setRectangle(0.95 * this.width, 0.8 * this.height, 0, -5, 0);
+    this.body.loadPolygon('physicsData', 'truck');
     this.body.angle = 180;
   }
 
