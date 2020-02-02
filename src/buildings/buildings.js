@@ -15,7 +15,7 @@ module.exports = {
 
     let buildings = Object.values(game.buildings);
 
-    game.physics.p2.enable(buildings, false);
+    game.physics.p2.enable(buildings, game.gameState.debug);
 
     buildings.forEach((building) => {
       building.addPhysics();
