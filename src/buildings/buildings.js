@@ -6,12 +6,15 @@ module.exports = {
   addBuildings: (game, truck) => {
 
     let collisionGroup = game.physics.p2.createCollisionGroup();
+    var buildingMasks = game.add.group();
+    buildingMasks.enableBody = true;
+    buildingMasks.physicsBodyType = Phaser.Physics.P2JS;
 
     game.buildings = {
-      FransHouse: new FransHouse(game, collisionGroup),
-      Workshop: new Workshop(game, collisionGroup),
-      Hardware: new Hardware(game, collisionGroup),
-      Doghouse: new Doghouse(game, collisionGroup),
+      FransHouse: new FransHouse(game, buildingMasks, collisionGroup),
+      Workshop: new Workshop(game, buildingMasks, collisionGroup),
+      Hardware: new Hardware(game, buildingMasks, collisionGroup),
+      Doghouse: new Doghouse(game, buildingMasks, collisionGroup),
     };
 
     game.buildings.collisionGroup = collisionGroup;

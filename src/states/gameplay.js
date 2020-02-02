@@ -57,7 +57,7 @@ class Gameplay extends Phaser.State {
 
     this.player = new Player(this.game, 100, 110, 'truck');
 
-    Buildings.addBuildings(this.game);
+    Buildings.addBuildings(this.game, this.player);
 
     this.player.controller = input;
 
