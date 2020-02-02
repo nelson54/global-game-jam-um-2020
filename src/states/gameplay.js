@@ -127,7 +127,7 @@ class Gameplay extends Phaser.State {
     this.squirter.cooldown = 200 * (1 - clf3) + 50 * clf3;
 
     if (state.playerState.health < 0) {
-      // alert("YOUR DEAD");
+      console.log("YOUR DEAD");
     }
 
     this.hud.updateWith(state);
