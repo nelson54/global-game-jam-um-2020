@@ -2,7 +2,14 @@ const Phaser = require('phaser-ce');
 
 class Bar extends Phaser.Sprite {
   constructor(parent, x, y, width=200, height=20) {
-    super(parent.game, x, y, 'transparent');
+    let game = parent.game;
+
+    if(!parent.game) {
+      game = parent
+    }
+
+
+    super(game, x, y, 'transparent');
 
     this.width = width;
     this.height = height;
@@ -13,7 +20,12 @@ class Bar extends Phaser.Sprite {
     this.addChild(this.leftSprite);
     this.addChild(this.rightSprite);
 
-    parent.addChild(this);
+    if(parent === game) {
+      this.game.add.existing(this);
+    } else {
+      parent.addChild(this);
+    }
+
   }
 
   updateValues(numerator, denominator) {

@@ -1,8 +1,8 @@
 const Phaser = require('phaser-ce');
 const Building = require('./building');
 class FransHouse extends Building {
-  constructor(game, collisionGroup) {
-    super(game, 1300, 670, 'frans-house', collisionGroup);
+  constructor(game) {
+    super(game, 1300, 670, 'frans-house', 300);
 
     this.scale.set(1, 1)
 
