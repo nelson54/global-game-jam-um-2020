@@ -131,6 +131,7 @@ class Gameplay extends Phaser.State {
     }
 
     this.hud.updateWith(state);
+    Buildings.checkBuildings(this.game);
   }
 
   render() {

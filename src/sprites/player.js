@@ -100,9 +100,6 @@ class Player extends Phaser.Sprite {
     } else if(this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_BACKWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.prev
     }
-
-
-
   }
 
   hitBuilding(_playerBody, buildingBody) {

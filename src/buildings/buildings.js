@@ -26,7 +26,17 @@ module.exports = {
     buildings.forEach((building) => {
       building.addPhysics();
     });
+  },
 
 
+  checkBuildings: (game) => {
+    let totalDamage = Object.values(game.buildings)
+      .map((building) => building.getDamage())
+      .reduce((total, damage) => total + damage, 0);
+
+    if(totalDamage <= 0) {
+      console.log('You Win.')
+    }
   }
-}
+
+};

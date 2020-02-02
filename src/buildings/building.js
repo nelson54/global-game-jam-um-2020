@@ -30,6 +30,10 @@ class Building extends Phaser.Sprite {
 
     this.healthBar.updateValues(this.health, this.maxHealth);
   }
+
+  getDamage() {
+    return this.maxHealth - this.health;
+  }
 }
 
 module.exports = Building;
