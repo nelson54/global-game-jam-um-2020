@@ -1,17 +1,12 @@
 let Menu = require('./menu');
-
+let _ = require('underscore');
 
 class MenuBuyDrugs extends Menu {
 
-  constructor() {
-    let title = "Buy Drugs!";
-    let menuItems = [
-      "Skeeze",
-      "Chlorine Trifluoride",
-      "F73-K12-B",
-      "Canadian Frog"
-    ];
-    super(title, menuItems);
+  preload() {
+    this.title = "Buy Drugs!";
+    this.menuItems = _.pluck(game.gameState.gameState.drugs, 'display_name');
+
   }
 
 }

@@ -126,6 +126,11 @@ class Gameplay extends Phaser.State {
     this.pushable.setAll('anchor', new Phaser.Point(0.5, 0.5));
 
     let input = new Input.XBoxController(this.input.gamepad.pad1);
+    this.game.input.keyboard.onPressCallback = function(pressed) {
+      if (pressed === "8") {
+        this.game.state.start('menuBuyDrugs');
+      }
+    };
 
     Buildings.addBuildings(this.game);
 

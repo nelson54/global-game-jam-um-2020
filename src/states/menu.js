@@ -3,8 +3,8 @@ let MenuText = require('../menus/menu-text');
 
 class Menu extends Phaser.State {
 
-  constructor(title, menuItems) {
-    super();
+  preload(title, menuItems) {
+
     this.title = title;
     this.menuItems = menuItems;
   }

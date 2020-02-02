@@ -20,10 +20,11 @@ class JamGame extends Phaser.Game {
       },
       create(){
         this.game.input.gamepad.start();
-        this.game.state.start('gameplay');
 
         this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
         this.gameState = this.game.gameState = GameSate.load();
+
+        this.game.state.start('gameplay');
       }
     });
 
