@@ -5,6 +5,8 @@ class GameState {
     if(!GameState.state) {
       GameState.state = Object.assign({}, initialState);
     }
+
+    return GameState.state;
   }
 
   static reset() {
