@@ -28,7 +28,7 @@ class Player extends Phaser.Sprite {
     let steer = movement.x;
     let gas = mapCurve(movement.y);
     let reverse = this.controller.isDown(Input.Buttons.REVERSE);
-    let braking = this.controller.isDown(Input.Buttons.BRAKE);
+    let braking = (this.velocity > 0.0 && reverse) || this.controller.isDown(Input.Buttons.BRAKE);
 
     const turningRange = 40;
     let turn = steer * turningRange;
@@ -42,8 +42,11 @@ class Player extends Phaser.Sprite {
     const dampening = 0.01;
     const brakeDampening = 0.075;
 
-    this.velocity += (reverse ? -gas : gas) * gasAcceleration;
+    this.velocity += (reverse ? 0 : gas) * gasAcceleration;
     this.velocity *= (1.0 - dampening);
+    if (reverse && this.velocity < 0.05) {
+      this.velocity -= 0.05;
+    }
     if (braking) {
       this.velocity *= (1.0 - brakeDampening);
     }
