@@ -106,6 +106,7 @@ class Gameplay extends Phaser.State {
   update() {
     var state = this.game.gameState.current;
 
+    var sumDosage = 0;
     for (var drugName in state.playerState.drugs) {
       var drugGameObj = state.gameState.drugs[drugName];
       var drugPlayerObj = state.playerState.drugs[drugName];
@@ -114,9 +115,13 @@ class Gameplay extends Phaser.State {
         drugPlayerObj.dosage = 0;
       } else {
         drugPlayerObj.dosage -= step;
-        state.playerState.health -= drugGameObj.damage * drugPlayerObj.dosage;
       }
+      sumDosage += drugPlayerObj.dosage;
     }
+    sumDosage /= 4;
+    this.debugDosage = sumDosage;
+
+    state.playerState.health += -3e-2 * Math.pow(2 * sumDosage - 1, 8);
 
     var f73_dose = state.playerState.drugs.f73_k12_b.dosage;
     this.smile.visible = f73_dose > 0.01;
@@ -148,7 +153,7 @@ class Gameplay extends Phaser.State {
       12);
 
     this.game.debug.text(
-      this.game.gameState.current.playerState.drugs.clf3.dosage.toString(),
+      this.debugDosage,
       12,
       24);
   }
