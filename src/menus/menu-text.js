@@ -16,6 +16,23 @@ class MenuText {
       }
     };
 
+    static getMenuItemHoverStyle() {
+      return {
+        "fill": "maroon",
+        "font": "bold 30pt Comic Sans MS",
+        "strokeThickness": 8
+      }
+    }
+
+    static getMenuItemSelectStyle() {
+      return {
+        "fill": "black",
+        "font": "bold 30pt Comic Sans MS",
+        "strokeThickness": 8
+      }
+    }
+
+
 }
 
 module.exports = MenuText;
