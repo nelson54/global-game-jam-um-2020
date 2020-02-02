@@ -6,12 +6,13 @@ class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
 
-    this.scale.set(0.5);
-    this.anchor.set(0.8, 0.5);
+    this.scale.set(0.4);
+    this.anchor.set(0.75, 0.5);
     this.angle = 180;
 
+    this.length = 0.6 * this.width;
+
     this.velocity = 0.0;
-    this.target_angle = this.angle;
 
     game.add.existing(this);
   }
@@ -23,35 +24,34 @@ class Player extends Phaser.Sprite {
     let steer = movement.x;
     let gas = movement.y;
     let reverse = this.controller.isDown(Input.Buttons.REVERSE);
-    let braking = (this.velocity > 0.0 && reverse || this.velocity < 0.0 && !reverse) || this.controller.isDown(Input.Buttons.BRAKE);
+    let braking = this.controller.isDown(Input.Buttons.BRAKE);
 
-    const turning_speed = 0.3;
-    let turn = steer * turning_speed * Math.abs(this.velocity);
-    if (turn != 0.0) {
-      this.target_angle = this.angle + turn;
-    }
+    const turningRange = 40;
+    let turn = steer * turningRange;
 
-    const gas_acceleration = 0.15;
-    this.velocity += (reverse ? -gas : gas) * gas_acceleration;
-    this.velocity *= 0.98;
+    let baseTurn = Math.abs(this.velocity) > 0 ? 180.0 * Math.atan(
+      this.velocity * Math.sin(turn * Math.PI / 180.0) /
+      (this.velocity * Math.cos(turn * Math.PI / 180.0) + this.length)
+    ) / Math.PI : 0.0;
+
+    const gasAcceleration = 0.15;
+    const dampening = 0.01;
+    const brakeDampening = 0.15;
+
+    this.velocity += (reverse ? -gas : gas) * gasAcceleration;
+    this.velocity *= (1.0 - dampening);
     if (braking) {
-      this.velocity *= 0.8;
+      this.velocity *= (1.0 - brakeDampening);
     }
 
     let vector = {
-      x: this.velocity * Math.cos(this.rotation + turn * Math.PI / 180.0),
-      y: this.velocity * Math.sin(this.rotation + turn * Math.PI / 180.0),
+      x: -this.velocity * Math.cos(this.rotation + baseTurn * Math.PI / 180.0),
+      y: -this.velocity * Math.sin(this.rotation + baseTurn * Math.PI / 180.0),
     };
 
     this.x += vector.x;
     this.y += vector.y;
-    this.angle += turn;
-
-    if (this.controller.isDown(Input.Buttons.YES)) {
-      console.log(Math.cos(turn * Math.PI / 180.0));
-      console.log(this.rotation);
-      console.log(vector);
-    }
+    this.angle += baseTurn;
   }
 }
 
