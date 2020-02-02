@@ -56,6 +56,10 @@ class Player extends Phaser.Sprite {
     this.x += vector.x;
     this.y += vector.y;
     this.angle += 180.0 * baseTurn / Math.PI;
+
+    if (this.controller.isDown(Input.Buttons.YES)) {
+      console.log(Math.sqrt(vector.x * vector.x + vector.y * vector.y));
+    }
   }
 }
 
