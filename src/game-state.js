@@ -87,10 +87,10 @@ const initialState = {
     activeDrug: 'skeeze',
     activeHammer: 'rock',
     hammers: {
-      rock: 10,
-      brick: 0,
-      steel: 0,
-      golden: 0,
+      rock: Number.MAX_SAFE_INTEGER,
+      brick: Number.MAX_SAFE_INTEGER,
+      steel: Number.MAX_SAFE_INTEGER,
+      golden: Number.MAX_SAFE_INTEGER,
     },
     effects: {
 
@@ -98,25 +98,25 @@ const initialState = {
     drugs: {
       skeeze: {
         dosage: 1,
-        inventory: 2,
+        inventory: Number.MAX_SAFE_INTEGER,
         prev: 'canadian_frog',
         next: 'clf3'
       },
       clf3: {
         dosage: 1,
-        inventory: 0,
+        inventory: Number.MAX_SAFE_INTEGER,
         prev: 'skeeze',
         next: 'f73_k12_b'
       },
       f73_k12_b: {
         dosage: 0.25,
-        inventory: 0,
+        inventory: Number.MAX_SAFE_INTEGER,
         prev: 'clf3',
         next: 'canadian_frog'
       },
       canadian_frog: {
         dosage: 0,
-        inventory: 0,
+        inventory: Number.MAX_SAFE_INTEGER,
         prev: 'f73_k12_b',
         next: 'skeeze'
       }
