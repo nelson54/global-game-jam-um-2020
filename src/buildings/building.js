@@ -20,6 +20,9 @@ class Building extends Phaser.Sprite {
     this.body.static = true;
     this.body.clearShapes();
     this.body.loadPolygon('physicsData', this.name);
+    this.body.setCollisionGroup(this.game.buildingsCollisionGroup);
+
+    this.body.collides([this.game.playerCollisionGroup]);
   }
 
   heal(hammer) {

@@ -101,7 +101,24 @@ const initialState = {
     effects: {
 
     },
-    drugs: {skeeze: 1, clf3: 0, f73_k12_b: 0, canadian_frog: 0}
+    drugs: {
+      skeeze: {
+        dosage: 1,
+        inventory: 2
+      },
+      clf3: {
+        dosage: 0,
+        inventory: 0
+      },
+      f73_k12_b: {
+        dosage: 0,
+        inventory: 0
+      },
+      canadian_frog: {
+        dosage: 0,
+        inventory: 0
+      }
+    }
   },
   gameState: {
     player: {

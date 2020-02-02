@@ -19,6 +19,7 @@ module.exports = {
     };
 
     let buildings = Object.values(game.buildings);
+    game.buildingsCollisionGroup = game.physics.p2.createCollisionGroup();
 
     game.physics.p2.enable(buildings, game.gameState.debug);
 

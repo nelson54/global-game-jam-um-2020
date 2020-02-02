@@ -77,6 +77,10 @@ class Gameplay extends Phaser.State {
     let squirter = new HammerSquirter(this.game, this.player);
     this.player.equipSquirter(squirter);
 
+    this.player.body.collides(this.game.buildingsCollisionGroup, this.player.hitBuilding, this.player);
+
+    game.physics.p2.updateBoundsCollisionGroup();
+
     this.game.camera.follow(this.player);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
@@ -95,15 +99,16 @@ class Gameplay extends Phaser.State {
 
   update() {
     var state = this.game.gameState.current;
+
     for (var drugName in state.playerState.drugs) {
-      var drugObj = state.gameState.drugs[drugName];
-      const step = 1 / (drugObj.duration * 60);
-      if (state.playerState.drugs[drugName] < step) {
-        state.playerState.drugs[drugName] = 0;
+      var drugGameObj = state.gameState.drugs[drugName];
+      var drugPlayerObj = state.playerState.drugs[drugName];
+      const step = 1 / (drugGameObj.duration * 60);
+      if (drugPlayerObj.dosage < step) {
+        drugPlayerObj.dosage = 0;
       } else {
-        state.playerState.drugs[drugName] -= step;
-        state.playerState.health -=
-          drugObj.damage * state.playerState.drugs[drugName];
+        drugPlayerObj.dosage -= step;
+        state.playerState.health -= drugGameObj.damage * drugPlayerObj.dosage;
       }
     }
 
@@ -128,7 +133,7 @@ class Gameplay extends Phaser.State {
       12);
 
     this.game.debug.text(
-      this.game.gameState.current.playerState.drugs.skeeze.toString(),
+      this.game.gameState.current.playerState.drugs.skeeze.dosage.toString(),
       12,
       24);
   }
