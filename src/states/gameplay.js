@@ -85,7 +85,6 @@ class Gameplay extends Phaser.State {
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
 
-/*
     this.game.input.activePointer.leftButton.onDown.add(() => {
       if (this.game.scale.isFullScreen) {
         this.game.scale.stopFullScreen();
@@ -93,7 +92,6 @@ class Gameplay extends Phaser.State {
         this.game.scale.startFullScreen(false);
       }
     });
-*/
 
     this.game.hud = new Hud(this.game);
   }
