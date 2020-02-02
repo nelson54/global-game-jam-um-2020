@@ -8,7 +8,7 @@ class Gameplay extends Phaser.State {
   preload() {
     this.game.load.image('transparent', '/assets/nil.png');
     this.game.load.image('red', '/assets/bars/red.png');
-    this.game.load.image('red', '/assets/bars/red.png');
+    this.game.load.image('green', '/assets/bars/green.png');
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
 
@@ -30,6 +30,25 @@ class Gameplay extends Phaser.State {
     this.game.load.image('doghouse.mask', '/assets/buildings/doghouse.mask.png');
 
     this.game.load.image('truck', '/assets/sprites/truck.png');
+
+    this.game.load.image('hud/truck-side', '/assets/hud/truck-side.png');
+    this.game.load.image('hud/left', '/assets/hud/left.png');
+    this.game.load.image('hud/up', '/assets/hud/up.png');
+    this.game.load.image('hud/right', '/assets/hud/right.png');
+    this.game.load.image('hud/down', '/assets/hud/down.png');
+    this.game.load.image('hud/no', '/assets/hud/no.png');
+
+    this.game.load.image('drugs/skeeze', '/assets/drugs/skeeze.png');
+    this.game.load.image('drugs/clf3', '/assets/drugs/clf3.png');
+    this.game.load.image('drugs/f73_k12_b', '/assets/drugs/f73_k12_b.png');
+    this.game.load.image('drugs/canadian_frog', '/assets/drugs/canadian_frog.png');
+
+    this.game.load.image('hammers/ball_peen', '/assets/hammers/ball_peen.png');
+    this.game.load.image('hammers/brick', '/assets/hammers/brick.png');
+    this.game.load.image('hammers/dildo', '/assets/hammers/dildo.png');
+    this.game.load.image('hammers/golden', '/assets/hammers/golden.png');
+    this.game.load.image('hammers/regular', '/assets/hammers/regular.png');
+    this.game.load.image('hammers/rock', '/assets/hammers/rock.png');
 
     this.game.load.image('normal-bullet', '/assets/sprites/normal-bullet.png');
     this.game.load.image('white-ball', 'assets/sprites/white-ball.png');
@@ -66,6 +85,7 @@ class Gameplay extends Phaser.State {
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
     this.time.advancedTiming = true;
 
+/*
     this.game.input.activePointer.leftButton.onDown.add(() => {
       if (this.game.scale.isFullScreen) {
         this.game.scale.stopFullScreen();
@@ -73,6 +93,7 @@ class Gameplay extends Phaser.State {
         this.game.scale.startFullScreen(false);
       }
     });
+*/
 
     this.game.hud = new Hud(this.game);
   }

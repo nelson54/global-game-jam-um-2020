@@ -84,8 +84,8 @@ const initialState = {
     activeHammer: 'rock',
     drugs: {
       skeeze: 0,
-      chlorine_triflouride: 0,
-      research: 0,
+      clf3: 0,
+      f73_k12_b: 0,
       canadian_frog: 0
     },
     hammers: {
@@ -109,14 +109,14 @@ const initialState = {
         price: 0,
         duration: 0
       },
-      chlorine_triflouride: {
-        name: "chlorine_triflouride",
+      clf3: {
+        name: "clf3",
         display_name: "Chlorine Triflouride",
         price: 0,
         duration: 0
       },
       research: {
-        name: "research",
+        name: "f73_k12_b",
         display_name: "F73-k12-b",
         price: 0,
         duration: 0
@@ -142,13 +142,13 @@ const initialState = {
         repairValue: 5
       },
       steel: {
-        name: "steel",
+        name: "regular",
         cost: 0,
         amount: 100,
         repairValue: 100
       },
-      gold: {
-        name: "gold",
+      golden: {
+        name: "golden",
         cost: 0,
         amount: 100,
         repairValue: 1000
