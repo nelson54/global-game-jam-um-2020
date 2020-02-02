@@ -86,18 +86,18 @@ class Player extends Phaser.Sprite {
     }
 
     let activeDrug = this.game.gameState.current.playerState.drugs[this.game.gameState.current.playerState.activeDrug];
-    if (this.controller.isDown(Input.Buttons.CHANGE_DRUG_FORWARD)) {
+    if (this.controller.justPressed(Input.Buttons.CHANGE_DRUG_FORWARD)) {
       this.game.gameState.current.playerState.activeDrug = activeDrug.next;
 
-    } else if(this.controller.isDown(Input.Buttons.CHANGE_DRUG_BACKWARD)) {
+    } else if(this.controller.justPressed(Input.Buttons.CHANGE_DRUG_BACKWARD)) {
       this.game.gameState.current.playerState.activeDrug = activeDrug.prev;
     }
 
 
     let activeHammer = this.game.gameState.current.gameState.hammers[this.game.gameState.current.playerState.activeHammer];
-    if (this.controller.isDown(Input.Buttons.CHANGE_HAMMER_FORWARD)) {
+    if (this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_FORWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.next
-    } else if(this.controller.isDown(Input.Buttons.CHANGE_HAMMER_BACKWARD)) {
+    } else if(this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_BACKWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.prev
     }
 
