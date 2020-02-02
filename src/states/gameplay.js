@@ -8,6 +8,8 @@ const GameSate = require("../game-state");
 class Gameplay extends Phaser.State {
   preload() {
     this.game.load.image('transparent', '/assets/nil.png');
+    this.game.load.image('red', '/assets/progress-bar/red.png');
+    this.game.load.image('red', '/assets/progress-bar/red.png');
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
 
@@ -170,7 +172,7 @@ class Gameplay extends Phaser.State {
       }
     });
 
-    this.gameState = GameSate.load();
+    game.gameState = GameSate.load();
 
     this.game.hud = new Hud(this.game);
   }

@@ -5,13 +5,23 @@ class Bar extends Phaser.Sprite {
 
     this.width = width;
 
-    this.numerator = numerator;
-    this.denominator = denominator;
+    this.leftSprite = new Phaser.Sprite(game, 0, 0, 'red');
+    this.rightSprite = new Phaser.Sprite(game, 0, 0, 'red');
+
+    this.updateValues(numerator, denominator);
 
     parent.addChild(this);
   }
 
-  changeValue,
+  updateValues(numerator, denominator){
+    this.numerator = numerator;
+    this.denominator = denominator;
+
+    let leftWidth = (numerator/denominator) * this.width;
+    let rightWidth =
+
+    this.leftSprite
+  }
 
 }
 
