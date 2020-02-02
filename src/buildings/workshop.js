@@ -7,10 +7,9 @@ class Workshop extends Building {
     this.scale.set(1, 1)
 
     this.collmask = new Phaser.Sprite(game, 0, 0, 'workshop.mask');
-    this.collmask.scale.set(this.scale.x, this.scale.y)
     game.physics.arcade.enable(this.collmask);
     this.collmask.enableBody = true;
-
+    this.collmask.alpha = .5;
     this.addChild(this.collmask);
   }
 }
