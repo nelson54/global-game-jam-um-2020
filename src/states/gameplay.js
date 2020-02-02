@@ -4,6 +4,7 @@ const Input = require('../input');
 const Buildings = require('../buildings/buildings');
 const Hud = require('../hud/hud');
 const MenuBuyDrugs = require('../menus/menu-buy-drugs');
+const MenuBuyHammers = require('../menus/menu-buy-hammers');
 const HammerSquirter = require('../hammer-squirter/hammer-squirter');
 
 class Gameplay extends Phaser.State {
@@ -58,7 +59,8 @@ class Gameplay extends Phaser.State {
   create() {
     this.game.input.enabled = true;
     let input = new Input.XBoxController(this.input.gamepad.pad1);
-    let menu = new MenuBuyDrugs(this.game);
+    let drugMenu = new MenuBuyDrugs(this.game);
+    let hammerMenu = new MenuBuyHammers(this.game);
     this.game.physics.startSystem(Phaser.Physics.P2JS);
     game.physics.p2.setImpactEvents(true);
     game.physics.p2.restitution = 0.9;
@@ -102,7 +104,7 @@ class Gameplay extends Phaser.State {
           drugObj.damage * state.playerState.drugs[drugName];
       }
     }
-    
+
     if (state.playerState.health < 0) {
       alert("YOUR DEAD");
     }
