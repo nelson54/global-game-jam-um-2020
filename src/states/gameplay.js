@@ -6,7 +6,7 @@ const Hud = require('../hud/hud');
 const MenuBuyDrugs = require('../menus/menu-buy-drugs');
 const MenuBuyHammers = require('../menus/menu-buy-hammers');
 const HammerSquirter = require('../hammer-squirter/hammer-squirter');
-
+const PlayerMessages = require('../messages/messages');
 class Gameplay extends Phaser.State {
   preload() {
     game.load.physics('physicsData', '/assets/physics/sprites.json');
