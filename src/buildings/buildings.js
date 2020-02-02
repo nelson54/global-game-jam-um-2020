@@ -2,7 +2,10 @@ const FransHouse = require('./frans-house'),
 Workshop = require('./workshop'),
 Hardware = require('./hardware'),
 Doghouse = require('./doghouse'),
-  School = require('./school')
+  School = require('./school'),
+  Dumpster1= require('./dumpster-1'),
+  Dumpster2= require('./dumpster-2');
+
 module.exports = {
   addBuildings: (game) => {
     game.buildings = {
@@ -11,6 +14,8 @@ module.exports = {
       Hardware: new Hardware(game),
       Doghouse: new Doghouse(game),
       School: new School(game),
+      Dumpster1: new Dumpster1(game),
+      Dumpster2: new Dumpster2(game)
     };
 
     let buildings = Object.values(game.buildings);

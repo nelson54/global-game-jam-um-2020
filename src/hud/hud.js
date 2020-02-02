@@ -58,7 +58,7 @@ class Hud extends Phaser.Group {
   updateWith(state) {
 
     this.healthBar.updateValues(state.playerState.health, state.gameState.player.healthMax);
-    this.health.text = state.playerState.health;
+    this.health.text = Math.floor(state.playerState.health);
 
     let drug = state.playerState.activeDrug;
     this.drug.loadTexture(drug == null ? 'hud/no' : 'drugs/' + drug);

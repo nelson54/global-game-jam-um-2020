@@ -31,6 +31,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hardware', '/assets/buildings/hardware.png');
     this.game.load.image('doghouse', '/assets/buildings/doghouse.png');
     this.game.load.image('school', '/assets/buildings/school.png');
+    this.game.load.image('dumpster1', '/assets/buildings/dumpster1.png');
+    this.game.load.image('dumpster2', '/assets/buildings/dumpster2.png');
 
     this.game.load.image('truck', '/assets/sprites/truck.png');
 
