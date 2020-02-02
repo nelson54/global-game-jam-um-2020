@@ -14,7 +14,7 @@ class HammerHudModule extends Phaser.Sprite {
 
     this.hammer = new Phaser.Sprite(this.game, 20, 70, 'hammer-1');
     this.hammer.anchor.set(0.5, 0.5);
-    this.hammer.scale.set(0.175);
+    this.hammer.scale.set(.4);
     this.addChild(this.hammer);
 
     this.arrowDown = new Phaser.Sprite(this.game, .5, 110, 'hud/down');
