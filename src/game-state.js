@@ -90,7 +90,7 @@ const initialState = {
       rock: 10,
       brick: 0,
       steel: 0,
-      gold: 0,
+      golden: 0,
     },
     effects: {
 
@@ -192,6 +192,5 @@ const initialState = {
     },
   }
 };
-
 
 module.exports = GameState;

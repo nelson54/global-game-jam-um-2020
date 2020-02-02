@@ -10,7 +10,7 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
     this.particleClass = Hammer;
     this.maxParticles = 100;
 
-    this.makeParticles(undefined, undefined, undefined, undefined, false);
+    this.makeParticles(['rock', 'brick', 'steel', 'golden',], undefined, undefined, undefined, false);
     this.gravity = 0;
 
     //this.sound = game.boop;
@@ -23,7 +23,7 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
 
   use() {
     if (!this._lastFire || Date.now() - this._lastFire >= this.cooldown) {
-      this.emitParticle(this.game.gameState.current.playerState.activeHammer);
+      this.emitParticle(null, null, this.game.gameState.current.playerState.activeHammer); //this.game.gameState.current.playerState.activeHammer
       //this.sound.play();
       this._lastFire = Date.now();
     }
