@@ -1,6 +1,8 @@
 const Phaser = require('phaser-ce'), 
   GameState = require('../game-state'),
-  Bar = require('../progress-bar/bar');
+  Bar = require('../progress-bar/bar'),
+  HammerHudModule = require('./hammer-hud-module'),
+  DoglarsHudModule = require('./doglars-hud-module');
 
 
 class Hud extends Phaser.Group {
@@ -25,7 +27,10 @@ class Hud extends Phaser.Group {
     var style = {font: "normal 20pt Arial Black"};
 
     this.newAt(game, 'hud/truck-side', 10, 20, 120);
-    this.addChild(new Phaser.Text(this.game, 30, 120, "Health", style));
+    //this.addChild(new Phaser.Text(this.game, 30, 120, "Health", style));
+
+    this.healthBar = new Bar(this, 10, 80, 150, 10);
+    this.healthBar.updateValues(100, 100);
 
     this.arrowLeft = this.arrow(160, 50, 'hud/left');
     this.drug = new Phaser.Sprite(this.game, 260, 60, 'drugs/skeeze');
@@ -34,23 +39,16 @@ class Hud extends Phaser.Group {
     this.addChild(this.drug);
     this.arrowRight = this.arrow(330, 50, 'hud/right');
 
-    this.arrowUp = this.arrow(550, 10, 'hud/up');
-    this.hammer = new Phaser.Sprite(this.game, 580, 80);
-    this.hammer.anchor.set(0.5, 0.5);
-    this.hammer.scale.set(0.175);
-    this.addChild(this.hammer);
-    this.arrowDown = this.arrow(550, 120, 'hud/down');
-
     // this.health = new Bar(this.game, 10, 0);
     this.health = new Phaser.Text(this.game, 60, 90, "", style);
     this.addChild(this.health);
 
-    style.fill= "#ff0000";
-    this.hammers = new Phaser.Text(game, 650, 20, "", style);
-    this.addChild(this.hammers);
-    style.fill = "#0000ff";
-    this.doglars = new Phaser.Text(game, 650, 50, "", style);
-    this.addChild(this.doglars);
+
+    this.doglarModule = new DoglarsHudModule(game, 750, 20, style);
+    this.addChild(this.doglarModule);
+
+    this.hammerModule = new HammerHudModule(game, 900, 10, style);
+    this.addChild(this.hammerModule);
 
     this.updateWith(game.gameState.current); // TODO.
 
@@ -58,16 +56,16 @@ class Hud extends Phaser.Group {
   }
 
   updateWith(state) {
+
+    this.healthBar.updateValues(state.playerState.health, state.gameState.player.healthMax);
     this.health.text = state.playerState.health;
 
-    var drug = state.playerState.activeDrug;
+    let drug = state.playerState.activeDrug;
     this.drug.loadTexture(drug == null ? 'hud/no' : 'drugs/' + drug);
 
-    var hammer = state.playerState.activeHammer;
-    this.hammer.loadTexture('hammers/' + hammer);
-
-    this.hammers.text = 'H: ' + state.playerState.hammers[hammer];
-    this.doglars.text = '$: ' + state.playerState.doglars;
+    let hammer = state.playerState.activeHammer;
+    this.hammerModule.updateValue(hammer, state.playerState.hammers[hammer]);
+    this.doglarModule.updateValue(state.playerState.doglars);
   }
 }
 

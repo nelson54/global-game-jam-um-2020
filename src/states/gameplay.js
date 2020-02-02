@@ -11,6 +11,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('transparent', '/assets/nil.png');
     this.game.load.image('red', '/assets/bars/red.png');
     this.game.load.image('green', '/assets/bars/green.png');
+    this.game.load.image('doglar', '/assets/coin.png');
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
 
