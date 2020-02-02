@@ -53,7 +53,7 @@ class Player extends Phaser.Sprite {
       (this.velocity * Math.cos(turn * Math.PI / 180.0) + this.length)
     ) : 0.0;
 
-    var skeeze = (10 * this.game.gameState.current.playerState.drugs.skeeze) + 1;
+    var skeeze = (10 * this.game.gameState.current.playerState.drugs.skeeze.dosage) + 1;
 
     var gasAcceleration = 0.15 * skeeze;
     var dampening = 0.01;
