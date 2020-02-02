@@ -11,17 +11,21 @@ class Player extends Phaser.Sprite {
     super(game, x, y, key);
     game.add.existing(this);
 
-    this.anchor.set(0.75, 0.5);
-
     this.length = 0.6 * this.width;
 
     this.velocity = 0.0;
 
-    this.game.physics.p2.enable(this, game.gameState.debug);
+    game.physics.p2.enable(this, game.gameState.debug);
     this.body.collideWorldBounds = true;
     this.body.clearShapes();
-    this.body.loadPolygon('physicsData', 'truck');
+    let data = game.cache.getPhysicsData('physicsData', 'truck');
+    for (let i = 0; i < data[0].shape.length / 2; i++) {
+      data[0].shape[2 * i + 0] -= 0.25 * this.width;
+    }
+    this.body.loadPolygon(null, data);
     this.body.angle = 180;
+
+    this.anchor.set(0.75, 0.5);
   }
 
   update() {
