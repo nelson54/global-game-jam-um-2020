@@ -15,6 +15,8 @@ class Player extends Phaser.Sprite {
 
     this.velocity = 0.0;
 
+    game.playerCollisionGroup = game.physics.p2.createCollisionGroup();
+
     game.physics.p2.enable(this, game.gameState.debug);
     this.body.collideWorldBounds = true;
     this.body.clearShapes();
@@ -24,6 +26,8 @@ class Player extends Phaser.Sprite {
     }
     this.body.loadPolygon(null, data);
     this.body.angle = 180;
+
+    this.body.setCollisionGroup(game.playerCollisionGroup);
 
     this.anchor.set(0.75, 0.5);
   }
@@ -80,6 +84,10 @@ class Player extends Phaser.Sprite {
     if (this.controller.isDown(Input.Buttons.SQUIRT)) {
       this.squirter.use();
     }
+  }
+
+  hitBuilding(_playerBody, buildingBody) {
+    this.velocity = 0;
   }
 }
 

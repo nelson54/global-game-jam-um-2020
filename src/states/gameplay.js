@@ -77,6 +77,10 @@ class Gameplay extends Phaser.State {
     let squirter = new HammerSquirter(this.game, this.player);
     this.player.equipSquirter(squirter);
 
+    this.player.body.collides(this.game.buildingsCollisionGroup, this.player.hitBuilding, this.player);
+
+    game.physics.p2.updateBoundsCollisionGroup();
+
     this.game.camera.follow(this.player);
 
     // To listen to buttons from a specific pad listen directly on that pad game.input.gamepad.padX, where X = pad 1-4
