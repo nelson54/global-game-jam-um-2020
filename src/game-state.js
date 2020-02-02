@@ -84,7 +84,7 @@ const initialState = {
   playerState: {
     health: 100,
     doglars:50,
-    activeDrug: null,
+    activeDrug: 'skeeze',
     activeHammer: 'rock',
     drugs: {
       skeeze: 0,
@@ -104,19 +104,27 @@ const initialState = {
     drugs: {
       skeeze: {
         dosage: 1,
-        inventory: 2
+        inventory: 2,
+        prev: 'canadian_frog',
+        next: 'clf3'
       },
       clf3: {
         dosage: 0,
-        inventory: 0
+        inventory: 0,
+        prev: 'skeeze',
+        next: 'f73_k12_b'
       },
       f73_k12_b: {
         dosage: 0,
-        inventory: 0
+        inventory: 0,
+        prev: 'clf3',
+        next: 'canadian_frog'
       },
       canadian_frog: {
         dosage: 0,
-        inventory: 0
+        inventory: 0,
+        prev: 'f73_k12_b',
+        next: 'skeeze'
       }
     }
   },
@@ -159,28 +167,37 @@ const initialState = {
         name: "rock",
         cost: 10,
         amount: 100,
-        repairValue: 1
+        repairValue: 1,
+        next: 'brick',
+        prev: 'golden'
       },
       brick: {
         name: "brick",
         cost: 0,
         amount: 100,
-        repairValue: 5
+        repairValue: 5,
+        next: 'steel',
+        prev: 'rock'
       },
       steel: {
-        name: "regular",
+        name: "steel",
         cost: 0,
         amount: 100,
-        repairValue: 100
+        repairValue: 100,
+        next: 'golden',
+        prev: 'brick'
       },
       golden: {
         name: "golden",
         cost: 0,
         amount: 100,
-        repairValue: 1000
+        repairValue: 1000,
+        next: 'rock',
+        prev: 'steel'
       },
     },
   }
 };
+
 
 module.exports = GameState;

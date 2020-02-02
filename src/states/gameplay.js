@@ -48,12 +48,12 @@ class Gameplay extends Phaser.State {
     this.game.load.image('drugs/f73_k12_b', '/assets/drugs/f73_k12_b.png');
     this.game.load.image('drugs/canadian_frog', '/assets/drugs/canadian_frog.png');
 
-    this.game.load.image('hammers/ball_peen', '/assets/hammers/ball_peen.png');
-    this.game.load.image('hammers/brick', '/assets/hammers/brick.png');
-    this.game.load.image('hammers/dildo', '/assets/hammers/dildo.png');
-    this.game.load.image('hammers/golden', '/assets/hammers/golden.png');
-    this.game.load.image('hammers/regular', '/assets/hammers/regular.png');
-    this.game.load.image('hammers/rock', '/assets/hammers/rock.png');
+    this.game.load.image('ball_peen', '/assets/hammers/ball_peen.png');
+    this.game.load.image('brick', '/assets/hammers/brick.png');
+    this.game.load.image('dildo', '/assets/hammers/dildo.png');
+    this.game.load.image('golden', '/assets/hammers/golden.png');
+    this.game.load.image('steel', '/assets/hammers/regular.png');
+    this.game.load.image('rock', '/assets/hammers/rock.png');
 
     this.game.load.image('map', 'assets/map.png');
   }

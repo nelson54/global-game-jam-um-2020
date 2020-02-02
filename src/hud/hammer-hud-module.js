@@ -29,7 +29,7 @@ class HammerHudModule extends Phaser.Sprite {
   }
 
   updateValue(hammer, count) {
-    this.hammer.loadTexture('hammers/' + hammer);
+    this.hammer.loadTexture(hammer);
     this.count = count
   }
 }
