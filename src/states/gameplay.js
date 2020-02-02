@@ -172,7 +172,7 @@ class Gameplay extends Phaser.State {
       }
     });
 
-    game.gameState = GameSate.load();
+    this.game.gameState = GameSate.load();
 
     this.game.hud = new Hud(this.game);
   }
