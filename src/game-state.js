@@ -86,12 +86,6 @@ const initialState = {
     doglars:50,
     activeDrug: null,
     activeHammer: 'rock',
-    drugs: {
-      skeeze: 0,
-      clf3: 0,
-      f73_k12_b: 0,
-      canadian_frog: 0
-    },
     hammers: {
       rock: 10,
       brick: 0,
