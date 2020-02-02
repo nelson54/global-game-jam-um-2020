@@ -4,9 +4,6 @@ Hardware = require('./hardware'),
 Doghouse = require('./doghouse');
 module.exports = {
   addBuildings: (game, truck) => {
-
-    //let collisionGroup = game.physics.p2.createCollisionGroup();
-
     game.buildings = {
       FransHouse: new FransHouse(game),
       Workshop: new Workshop(game),
@@ -20,7 +17,6 @@ module.exports = {
       return building
     });
 
-    objs.push(truck);
     game.physics.p2.enable(objs, true);
 
     buildings.forEach((building) => {
@@ -28,12 +24,5 @@ module.exports = {
       building.body.clearShapes();
       building.body.loadPolygon('physicsData', building.name);
     });
-    truck.body.rotateRight(180);
-    //truck.addPhysics();
-
-    //game.buildings.collisionGroup = collisionGroup;
-
-    //game.physics.p2.updateBoundsCollisionGroup();
-    //truck.body.collides([collisionGroup]);
   }
 }

@@ -9,6 +9,7 @@ function mapCurve(x) {
 class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
+    game.add.existing(this);
 
     this.scale.set(0.4);
     this.anchor.set(0.75, 0.5);
@@ -17,16 +18,13 @@ class Player extends Phaser.Sprite {
 
     this.velocity = 0.0;
 
-    game.add.existing(this);
-  }
-
-  addPhysics() {
     this.game.physics.p2.enable(this, true);
     this.enableBody = true;
     this.body.collideWorldBounds = true;
-    this.body.rotateRight(180);
+    this.body.clearShapes();
+    this.body.setRectangle(0.95 * this.width, 0.8 * this.height, 0, -5, 0);
+    this.body.angle = 180;
   }
-
 
   update() {
     super.update();
@@ -65,18 +63,13 @@ class Player extends Phaser.Sprite {
 
     this.velocity = Math.sign(this.velocity) * Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 
-    //this.body.x(vector.x);
-    //this.body.x(vector.y);
-
     this.body.setZeroVelocity();
-    this.body.moveRight(200 * vector.x);
-    this.body.moveDown(200 * vector.y);
+    this.body.moveRight(50 * vector.x);
+    this.body.moveDown(50 * vector.y);
     this.body.setZeroRotation();
-    this.body.rotateRight(100 * 180 * baseTurn / Math.PI);
+    this.body.rotateRight(30 * 180 * baseTurn / Math.PI);
 
-    //this.body.x += vector.x;
-    //this.body.y += vector.y;
-    //this.body.angle += 180.0 * baseTurn / Math.PI;
+    this.body.rotateRight(10);
 
     if (this.controller.isDown(Input.Buttons.YES)) {
       console.log(this.velocity);
