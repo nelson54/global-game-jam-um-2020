@@ -52,16 +52,18 @@ class Player extends Phaser.Sprite {
     }
 
     let vector = {
-      x: -this.velocity * Math.cos(10 * baseTurn) * Math.cos(this.rotation + baseTurn),
-      y: -this.velocity * Math.cos(10 * baseTurn) * Math.sin(this.rotation + baseTurn),
+      x: -this.velocity * Math.cos(2 * baseTurn) * Math.cos(this.rotation + baseTurn),
+      y: -this.velocity * Math.cos(2 * baseTurn) * Math.sin(this.rotation + baseTurn),
     };
+
+    this.velocity = Math.sign(this.velocity) * Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 
     this.x += vector.x;
     this.y += vector.y;
     this.angle += 180.0 * baseTurn / Math.PI;
 
     if (this.controller.isDown(Input.Buttons.YES)) {
-      console.log(Math.sqrt(vector.x * vector.x + vector.y * vector.y));
+      console.log(this.velocity);
     }
   }
 }
