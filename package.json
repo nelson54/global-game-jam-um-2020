@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "phaser-ce": "^2.11.0",
+    "underscore": "^1.9.2",
     "webfontloader": "^1.6.28",
     "webpack-cli": "^3.2.1"
   }
