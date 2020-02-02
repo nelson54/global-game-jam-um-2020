@@ -18,6 +18,7 @@ class XBoxController {
   constructor(pad) {
     this.active = true;
     this.pad = pad;
+    this.presses = {};
   }
 
   destroy() {
@@ -75,6 +76,21 @@ class XBoxController {
     }
 
     return false;
+  }
+
+  justPressed(button) {
+    let fire = false;
+
+    if (this.isDown(button)) {
+      if (this.presses[button] === undefined || Date.now() > this.presses[button] + 300) {
+        fire = true;
+      }
+      this.presses[button] = Date.now();
+    } else {
+      delete this.presses[button];
+    }
+
+    return fire;
   }
 }
 
