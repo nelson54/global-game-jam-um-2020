@@ -7,7 +7,7 @@ const GameSate = require("./game-state");
 
 class JamGame extends Phaser.Game {
   constructor() {
-    super(800, 600, Phaser.AUTO, document.querySelector('body'), {
+    super(1200, 900, Phaser.AUTO, document.querySelector('body'), {
       preload() {
         this.game.state.add('end-game1', new EndGame(this.game, "Player 1"));
         this.game.state.add('end-game2', new EndGame(this.game, "Player 2"));
