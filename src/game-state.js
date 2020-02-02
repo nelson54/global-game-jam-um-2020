@@ -111,7 +111,7 @@ const initialState = {
         inventory: 0
       },
       f73_k12_b: {
-        dosage: 0,
+        dosage: 0.25,
         inventory: 0
       },
       canadian_frog: {

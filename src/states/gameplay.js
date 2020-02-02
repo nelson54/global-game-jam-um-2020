@@ -42,6 +42,8 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hud/right', '/assets/hud/right.png');
     this.game.load.image('hud/down', '/assets/hud/down.png');
     this.game.load.image('hud/no', '/assets/hud/no.png');
+    
+    this.game.load.image('smile', '/assets/smile.png');
 
     this.game.load.image('drugs/skeeze', '/assets/drugs/skeeze.png');
     this.game.load.image('drugs/clf3', '/assets/drugs/clf3.png');
@@ -95,6 +97,9 @@ class Gameplay extends Phaser.State {
     });
 
     this.hud = new Hud(this.game);
+
+    this.smile = this.game.add.sprite(512, 384, 'smile');
+    this.smile.anchor.set(0.5, 0.5);
   }
 
   update() {
@@ -111,6 +116,11 @@ class Gameplay extends Phaser.State {
         state.playerState.health -= drugGameObj.damage * drugPlayerObj.dosage;
       }
     }
+
+    var f73_dose = state.playerState.drugs.f73_k12_b.dosage;
+    this.smile.visible = f73_dose > 0.01;
+    this.smile.alpha = f73_dose;
+    this.smile.angle += 60 / 60;
 
     if (state.playerState.health < 0) {
       alert("YOUR DEAD");
@@ -133,7 +143,7 @@ class Gameplay extends Phaser.State {
       12);
 
     this.game.debug.text(
-      this.game.gameState.current.playerState.drugs.skeeze.dosage.toString(),
+      this.game.gameState.current.playerState.drugs.f73_k12_b.dosage.toString(),
       12,
       24);
   }
