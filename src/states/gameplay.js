@@ -7,8 +7,8 @@ const Hud = require('../hud/hud');
 class Gameplay extends Phaser.State {
   preload() {
     this.game.load.image('transparent', '/assets/nil.png');
-    this.game.load.image('red', '/assets/progress-bar/red.png');
-    this.game.load.image('red', '/assets/progress-bar/red.png');
+    this.game.load.image('red', '/assets/bars/red.png');
+    this.game.load.image('red', '/assets/bars/red.png');
 
     this.game.load.image('hammer-1', '/assets/sprites/regular_hammer.png');
 
@@ -21,9 +21,13 @@ class Gameplay extends Phaser.State {
     this.game.load.image('white-sparkle-3', '/assets/effects/white3.png');
 
     this.game.load.image('frans-house', '/assets/buildings/house.png');
+    this.game.load.image('frans-house.mask', '/assets/buildings/house.mask.png');
     this.game.load.image('workshop', '/assets/buildings/workshop.png');
+    this.game.load.image('workshop.mask', '/assets/buildings/workshop.mask.png');
     this.game.load.image('hardware', '/assets/buildings/hardware.png');
+    this.game.load.image('hardware.mask', '/assets/buildings/hardware.mask.png');
     this.game.load.image('doghouse', '/assets/buildings/doghouse.png');
+    this.game.load.image('doghouse.mask', '/assets/buildings/doghouse.mask.png');
 
     this.game.load.image('truck', '/assets/sprites/truck.png');
 
