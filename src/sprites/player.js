@@ -17,8 +17,7 @@ class Player extends Phaser.Sprite {
 
     this.velocity = 0.0;
 
-    this.game.physics.p2.enable(this, true);
-    this.enableBody = true;
+    this.game.physics.p2.enable(this, game.gameState.debug);
     this.body.collideWorldBounds = true;
     this.body.clearShapes();
     this.body.loadPolygon('physicsData', 'truck');

@@ -1,6 +1,7 @@
 const EventTypes = require('./event-types');
 
 class GameState {
+
   static load() {
     if(!GameState.state) {
       GameState.state = Object.assign({}, initialState);
@@ -75,6 +76,8 @@ class GameState {
     });
   }
 }
+
+GameState.debug = false;
 
 const initialState = {
   playerState: {

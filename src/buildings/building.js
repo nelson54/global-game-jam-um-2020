@@ -4,13 +4,13 @@ class Building extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
     this.name = key;
-    this.alpha = .8;
+    //this.alpha = .8;
 
     game.add.existing(this);
   }
 
   addPhysics(collisionGroup) {
-    this.game.physics.p2.enable(this, true);
+    this.game.physics.p2.enable(this, game.gameState.debug);
 
     this.body.clearShapes();
     this.body.static = true;
