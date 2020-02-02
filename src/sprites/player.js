@@ -2,6 +2,10 @@ const Phaser = require('phaser-ce');
 const Input = require('../input');
 const HammerGun = require('../gun/hammer-gun');
 
+function mapCurve(x) {
+  return Math.max(Math.min(x * x, 1), 0);
+}
+
 class Player extends Phaser.Sprite {
   constructor(game, x, y, key) {
     super(game, x, y, key);
@@ -22,21 +26,21 @@ class Player extends Phaser.Sprite {
 
     let movement = this.controller.movement;
     let steer = movement.x;
-    let gas = movement.y;
+    let gas = mapCurve(movement.y);
     let reverse = this.controller.isDown(Input.Buttons.REVERSE);
     let braking = this.controller.isDown(Input.Buttons.BRAKE);
 
     const turningRange = 40;
     let turn = steer * turningRange;
 
-    let baseTurn = Math.abs(this.velocity) > 0 ? 180.0 * Math.atan(
+    let baseTurn = Math.abs(this.velocity) > 0 ? Math.atan(
       this.velocity * Math.sin(turn * Math.PI / 180.0) /
       (this.velocity * Math.cos(turn * Math.PI / 180.0) + this.length)
-    ) / Math.PI : 0.0;
+    ) : 0.0;
 
     const gasAcceleration = 0.15;
     const dampening = 0.01;
-    const brakeDampening = 0.15;
+    const brakeDampening = 0.075;
 
     this.velocity += (reverse ? -gas : gas) * gasAcceleration;
     this.velocity *= (1.0 - dampening);
@@ -45,13 +49,13 @@ class Player extends Phaser.Sprite {
     }
 
     let vector = {
-      x: -this.velocity * Math.cos(this.rotation + baseTurn * Math.PI / 180.0),
-      y: -this.velocity * Math.sin(this.rotation + baseTurn * Math.PI / 180.0),
+      x: -this.velocity * Math.cos(10 * baseTurn) * Math.cos(this.rotation + baseTurn),
+      y: -this.velocity * Math.cos(10 * baseTurn) * Math.sin(this.rotation + baseTurn),
     };
 
     this.x += vector.x;
     this.y += vector.y;
-    this.angle += baseTurn;
+    this.angle += 180.0 * baseTurn / Math.PI;
   }
 }
 
