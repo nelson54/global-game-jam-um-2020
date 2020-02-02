@@ -81,10 +81,6 @@ class Player extends Phaser.Sprite {
     this.body.setZeroRotation();
     this.body.rotateRight(20 * 180 * baseTurn / Math.PI);
 
-    if (this.controller.isDown(Input.Buttons.SQUIRT)) {
-      this.squirter.use();
-    }
-
     let activeDrug = this.game.gameState.current.playerState.drugs[this.game.gameState.current.playerState.activeDrug];
     if (this.controller.justPressed(Input.Buttons.CHANGE_DRUG_FORWARD)) {
       this.game.gameState.current.playerState.activeDrug = activeDrug.next;
@@ -93,6 +89,7 @@ class Player extends Phaser.Sprite {
       this.game.gameState.current.playerState.activeDrug = activeDrug.prev;
     }
 
+<<<<<<< HEAD
     if (this.controller.justPressed(Input.Buttons.TAKE_DRUG)) {
       let activeDrugName = this.game.gameState.current.playerState.activeDrug;
       this.game.gameState.current.playerState.drugs[activeDrugName].dosage++;
@@ -100,12 +97,44 @@ class Player extends Phaser.Sprite {
     }
 
 
+=======
+>>>>>>> Heal buildings with hammers.
     let activeHammer = this.game.gameState.current.gameState.hammers[this.game.gameState.current.playerState.activeHammer];
     if (this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_FORWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.next
     } else if(this.controller.justPressed(Input.Buttons.CHANGE_HAMMER_BACKWARD)) {
       this.game.gameState.current.playerState.activeHammer = activeHammer.prev
     }
+<<<<<<< HEAD
+=======
+
+    if (this.controller.isDown(Input.Buttons.SQUIRT)) {
+      let fired = this.squirter.use();
+
+      if (fired) {
+        for (let b in this.game.buildings) {
+          let building = this.game.buildings[b];
+
+          let vector = {
+            x: -Math.cos(this.rotation),
+            y: -Math.sin(this.rotation),
+          };
+
+          let offset = {
+            x: building.x - this.x,
+            y: building.y - this.y,
+          };
+
+          let distance = Math.sqrt(offset.x * offset.x + offset.y * offset.y);
+          let dot = vector.x * (offset.x / distance) + vector.y * (offset.y / distance);
+
+          if (dot > 0.9 && distance - this.length <= Math.min(building.width, building.height)) {
+            building.heal(activeHammer.repairValue);
+          }
+        }
+      }
+    }
+>>>>>>> Heal buildings with hammers.
   }
 
   hitBuilding(_playerBody, buildingBody) {

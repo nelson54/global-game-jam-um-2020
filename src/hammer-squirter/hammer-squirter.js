@@ -25,6 +25,9 @@ class HammerSquirter extends Phaser.Particles.Arcade.Emitter {
       this.emitParticle(null, null, this.game.gameState.current.playerState.activeHammer); //this.game.gameState.current.playerState.activeHammer
       //this.sound.play();
       this._lastFire = Date.now();
+      return true;
+    } else {
+      return false;
     }
   }
 
