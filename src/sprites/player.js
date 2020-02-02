@@ -18,6 +18,9 @@ class Player extends Phaser.Sprite {
 
     this.velocity = 0.0;
 
+    game.physics.arcade.enable(this);
+    this.enableBody = true;
+    this.body.collideWorldBounds = true;
     game.add.existing(this);
   }
 

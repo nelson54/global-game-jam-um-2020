@@ -44,7 +44,8 @@ class Gameplay extends Phaser.State {
     this.game.input.enabled = true;
     let input = new Input.XBoxController(this.input.gamepad.pad1);
 
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.startSystem(Phaser.Physics.P2JS);
+    game.physics.p2.setImpactEvents(true);
 
     this.game.add.tileSprite(0, 0, 1920, 1920, 'map');
 
@@ -54,9 +55,10 @@ class Gameplay extends Phaser.State {
       }
     };
 
+    this.player = new Player(this.game, 100, 110, 'truck');
+
     Buildings.addBuildings(this.game);
 
-    this.player = new Player(this.game, 100, 110, 'truck');
     this.player.controller = input;
 
     this.game.camera.follow(this.player);
