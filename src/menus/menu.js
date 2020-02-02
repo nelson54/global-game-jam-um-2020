@@ -8,6 +8,7 @@ class Menu {
     this.titleText = title;
     this.listItems = listItems;
     this.menuList = [];
+    this.buyService = null;
     let menuHotKey = game.input.keyboard.addKey(hotKey);
     menuHotKey.onDown.add(this.displayMenu, this);
   }
@@ -45,7 +46,7 @@ class Menu {
     let positionY = 200;
     let menuItemPadding = 75;
     _.each(this.listItems, function(listItem) {
-      this.menuList.push(this.game.add.text(positionX, positionY, listItem, MenuText.getMenuItemStyle()));
+      this.menuList.push(this.game.add.text(positionX, positionY, listItem.display_name, MenuText.getMenuItemStyle()));
       positionY += menuItemPadding;
     }, this);
     this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemHoverStyle());
@@ -71,6 +72,13 @@ class Menu {
 
   select() {
     this.menuList[this.selectedItem].setStyle(MenuText.getMenuItemSelectStyle(), true);
+    if (this.buyService !== null) {
+      let service = new this.buyService(this.game);
+      service.buy(this.listItems[this.selectedItem].name);
+    } else {
+      console.error("Buy does not exist");
+    }
+    this.escape();
   }
 
   escape() {

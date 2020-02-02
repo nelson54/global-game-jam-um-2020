@@ -86,12 +86,6 @@ const initialState = {
     doglars:50,
     activeDrug: 'skeeze',
     activeHammer: 'rock',
-    drugs: {
-      skeeze: 0,
-      clf3: 0,
-      f73_k12_b: 0,
-      canadian_frog: 0
-    },
     hammers: {
       rock: 10,
       brick: 0,
@@ -115,7 +109,7 @@ const initialState = {
         next: 'f73_k12_b'
       },
       f73_k12_b: {
-        dosage: 0,
+        dosage: 0.25,
         inventory: 0,
         prev: 'clf3',
         next: 'canadian_frog'
