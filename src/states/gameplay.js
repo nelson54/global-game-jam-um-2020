@@ -42,7 +42,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('hud/right', '/assets/hud/right.png');
     this.game.load.image('hud/down', '/assets/hud/down.png');
     this.game.load.image('hud/no', '/assets/hud/no.png');
-    
+
     this.game.load.image('smile', '/assets/smile.png');
 
     this.game.load.image('drugs/skeeze', '/assets/drugs/skeeze.png');
@@ -53,7 +53,7 @@ class Gameplay extends Phaser.State {
     this.game.load.image('ball_peen', '/assets/hammers/ball_peen.png');
     this.game.load.image('brick', '/assets/hammers/brick.png');
     this.game.load.image('dildo', '/assets/hammers/dildo.png');
-    this.game.load.image('gold', '/assets/hammers/golden.png');
+    this.game.load.image('golden', '/assets/hammers/golden.png');
     this.game.load.image('steel', '/assets/hammers/regular.png');
     this.game.load.image('rock', '/assets/hammers/rock.png');
 
