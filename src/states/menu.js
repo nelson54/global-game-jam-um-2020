@@ -15,15 +15,15 @@ class Menu extends Phaser.State {
     this.setMenuItems();
   }
 
-  setBackground = function() {
+  setBackground() {
     this.game.stage.backgroundColor = "#30b3ff";
   };
 
-  setTitle = function() {
+  setTitle() {
     this.game.add.text(0, 0, this.title, MenuText.getTitleStyle());
   };
 
-  setMenuItems = function() {
+  setMenuItems() {
     let positionX = this.game.world.centerX - 650;
     let positionY = 200;
     let menuItemPadding = 75;
