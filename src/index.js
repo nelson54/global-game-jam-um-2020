@@ -3,7 +3,7 @@ const Gameplay = require('./states/gameplay');
 const EndGame = require('./states/end-game');
 const MenuBuyDrugs = require('./states/menu-buy-drugs');
 const Input = require('./input');
-const GameSate = require("./game-state");
+const GameState = require("./game-state");
 
 class JamGame extends Phaser.Game {
   constructor() {
@@ -22,7 +22,7 @@ class JamGame extends Phaser.Game {
         this.game.input.gamepad.start();
 
         this.game.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
-        this.gameState = this.game.gameState = GameSate.load();
+        this.gameState = this.game.gameState = GameState.load();
 
         this.game.state.start('gameplay');
       }

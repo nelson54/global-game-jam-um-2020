@@ -4,7 +4,7 @@ class GameState {
 
   static load() {
     if(!GameState.state) {
-      GameState.state = Object.assign({}, initialState);
+      GameState.state = new GameState(Object.assign({}, initialState));
     }
 
     return GameState.state;
@@ -20,8 +20,9 @@ class GameState {
   }
 
   constructor(obj) {
-    this.events = new Phaser.Events.EventEmitter();
+    //this.events = new Phaser.Events.EventEmitter();
     this.current = obj;
+    this.debug = true;
   }
 
   adjustHealth(amount) {
@@ -76,8 +77,6 @@ class GameState {
     });
   }
 }
-
-GameState.debug = false;
 
 const initialState = {
   playerState: {
